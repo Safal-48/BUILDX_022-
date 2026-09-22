@@ -43,6 +43,4 @@ tunnel*.log
 tunnel*.txt
 public-*.txt
 
-.vercel
 .env*
-README*
