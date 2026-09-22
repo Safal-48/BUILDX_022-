@@ -36,6 +36,7 @@ import {
   History,
   UserCheck,
   BarChart3,
+  HardDrive,
 } from "lucide-react";
 import { Container } from "./container";
 import { SkilloraLogo, SkilloraIcon } from "@/components/ui/logo";
@@ -46,12 +47,14 @@ import { useAuth } from "@/lib/auth/auth-context";
 import { UserRole } from "@/lib/auth/types";
 import { stopAllCameraStreams } from "@/lib/camera/camera-stream-manager";
 import { RiUserFillIcon } from "@/components/ui/icons/ri-user-fill";
+import { useLowData } from "@/lib/accessibility/low-data-context";
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
   const { user, isAuthenticated, logout, login } = useAuth();
+  const { isLowData, toggleLowData } = useLowData();
   const pathname = usePathname();
 
   // Guarantee that leaving camera sections (assessment / mock interview) immediately shuts down all camera hardware
@@ -169,6 +172,50 @@ export function Navbar() {
     },
   ];
 
+  // Learning Tools Items (Grouped for clean, balanced navigation)
+  const learningTools = [
+    {
+      title: "AI Education Assistant",
+      desc: "Socratic tutoring, homework help & bilingual Hindi/English concept clarification",
+      href: "/learning/intervention",
+      icon: BookOpen,
+      badge: "Socratic AI",
+      color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
+    },
+    {
+      title: "Personalized Practice",
+      desc: "Diagnostic gaps & targeted 15-minute micro-practice drills",
+      href: "/learning",
+      icon: Brain,
+      badge: "Adaptive",
+      color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
+    },
+    {
+      title: "AI Study Planner",
+      desc: "Autonomous daily & weekly schedule tailored to your goals",
+      href: "/learning/planner",
+      icon: Calendar,
+      badge: "Planner",
+      color: "text-purple-400 bg-purple-500/10 border-purple-500/30",
+    },
+    {
+      title: "Learning Roadmap",
+      desc: "Subject mastery milestones and skill progression tree",
+      href: "/learning/roadmap",
+      icon: Layers,
+      badge: "Roadmap",
+      color: "text-amber-400 bg-amber-500/10 border-amber-500/30",
+    },
+    {
+      title: "Saved / Offline Notes",
+      desc: "Downloadable .txt summaries & offline practice (0 KB cellular data)",
+      href: "/learning/saved",
+      icon: HardDrive,
+      badge: "0 KB Offline",
+      color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
+    },
+  ];
+
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
@@ -178,7 +225,7 @@ export function Navbar() {
       }`}
     >
       <Container size="xl">
-        <div className="flex h-[72px] items-center justify-between gap-4">
+        <div className="flex h-[72px] items-center justify-between gap-3 sm:gap-6 w-full">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3 shrink-0">
             <Link href="/" className="flex items-center gap-3 group">
@@ -187,31 +234,19 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation - Dynamically Customized by Active Role */}
-          <nav className="hidden xl:flex items-center gap-1.5">
+          <nav className="hidden xl:flex items-center justify-center gap-1.5 flex-1 max-w-2xl mx-auto">
             {/* ---------------- 1. STUDENT PERSPECTIVE NAVIGATION ---------------- */}
             {isStudent && (
               <>
                 <Link
                   href="/dashboard"
-                  className={`px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-semibold transition-all whitespace-nowrap ${
                     pathname === "/dashboard"
-                      ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
+                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-glow-sm"
                       : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
                   }`}
                 >
                   HOME
-                </Link>
-
-                <Link
-                  href="/learning"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
-                    pathname === "/learning" || pathname?.startsWith("/learning/intervention")
-                      ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
-                  }`}
-                >
-                  <BookOpen className="h-3.5 w-3.5 text-cyan-400" />
-                  <span>LEARN</span>
                 </Link>
 
                 <Link
@@ -225,6 +260,66 @@ export function Navbar() {
                   <Brain className="h-3.5 w-3.5 text-cyan-400" />
                   <span>ASSESS</span>
                 </Link>
+
+                {/* MY LEARNING DROPDOWN */}
+                <div className="relative" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenDropdown(openDropdown === "learning" ? null : "learning")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold tracking-wide transition-all whitespace-nowrap ${
+                      openDropdown === "learning" || pathname?.startsWith("/learning")
+                        ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
+                        : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                    }`}
+                  >
+                    <BookOpen className="h-3.5 w-3.5 text-cyan-400" />
+                    <span>MY LEARNING</span>
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                        openDropdown === "learning" ? "rotate-180 text-cyan-400" : "text-muted-foreground"
+                      }`}
+                    />
+                  </button>
+
+                  {openDropdown === "learning" && (
+                    <div className="absolute top-full left-0 mt-2 w-[420px] p-3 rounded-2xl bg-[#090d16] border border-cyan-500/40 shadow-[0_25px_60px_rgba(0,0,0,0.95)] space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                      <div className="px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-cyan-400 border-b border-white/[0.08] pb-1.5 flex items-center justify-between">
+                        <span>Personalized Learning Suite</span>
+                        <Badge variant="cyber" size="sm" className="text-[9px]">Adaptive</Badge>
+                      </div>
+                      <div className="grid grid-cols-1 gap-1.5 pt-1">
+                        {learningTools.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setOpenDropdown(null)}
+                              className="p-2.5 rounded-xl bg-[#0f172a] hover:bg-[#1b253b] border border-white/[0.08] hover:border-cyan-500/40 transition-all flex items-start gap-3 group"
+                            >
+                              <div className={`p-2 rounded-lg border ${item.color} shrink-0 group-hover:scale-105 transition-transform`}>
+                                <Icon className="h-4 w-4" />
+                              </div>
+                              <div className="space-y-0.5 flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs font-bold text-foreground font-mono group-hover:text-cyan-300 transition-colors">
+                                    {item.title}
+                                  </span>
+                                  <Badge variant="glass" size="sm" className="font-mono text-[9px]">
+                                    {item.badge}
+                                  </Badge>
+                                </div>
+                                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                                  {item.desc}
+                                </p>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 <Link
                   href="/scholarships"
@@ -240,42 +335,14 @@ export function Navbar() {
 
                 <Link
                   href="/opportunities"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                    pathname?.startsWith("/opportunities")
+                      ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-glow-sm"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  }`}
                 >
                   <Compass className="h-3.5 w-3.5 text-emerald-400" />
                   <span>CAREER &amp; OPPS</span>
-                </Link>
-
-                <Link
-                  href="/learning/roadmap"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
-                    pathname?.startsWith("/learning/roadmap")
-                      ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
-                  }`}
-                >
-                  <Layers className="h-3.5 w-3.5 text-cyan-400" />
-                  <span>MY ROADMAP</span>
-                </Link>
-
-                <Link
-                  href="/dashboard#alerts"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
-                >
-                  <Bell className="h-3.5 w-3.5 text-amber-400" />
-                  <span>ALERTS</span>
-                </Link>
-
-                <Link
-                  href="/profile"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
-                    pathname?.startsWith("/profile")
-                      ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
-                  }`}
-                >
-                  <RiUserFillIcon className="h-3.5 w-3.5 text-cyan-400" />
-                  <span>PROFILE</span>
                 </Link>
               </>
             )}
@@ -541,7 +608,7 @@ export function Navbar() {
           </nav>
 
           {/* Right Action Bar */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Quick Role Switcher (For rapid testing & demo review) */}
             <div className="relative" onClick={(e) => e.stopPropagation()}>
               <button
@@ -564,28 +631,28 @@ export function Navbar() {
                     onClick={() => handleRoleQuickSwitch("student")}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs font-mono flex items-center justify-between hover:bg-cyan-500/10 ${effectiveRole === "student" ? "bg-cyan-500/20 text-cyan-300 font-bold" : "text-slate-300"}`}
                   >
-                    <span>🎓 Student (Amit / Pooja)</span>
+                    <span>🎓 Student</span>
                     {effectiveRole === "student" && <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />}
                   </button>
                   <button
                     onClick={() => handleRoleQuickSwitch("teacher")}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs font-mono flex items-center justify-between hover:bg-emerald-500/10 ${effectiveRole === "teacher" ? "bg-emerald-500/20 text-emerald-300 font-bold" : "text-slate-300"}`}
                   >
-                    <span>👩‍🏫 Teacher (Mrs. Sunita)</span>
+                    <span>👩‍🏫 Teacher</span>
                     {effectiveRole === "teacher" && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />}
                   </button>
                   <button
                     onClick={() => handleRoleQuickSwitch("parent")}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs font-mono flex items-center justify-between hover:bg-amber-500/10 ${effectiveRole === "parent" ? "bg-amber-500/20 text-amber-300 font-bold" : "text-slate-300"}`}
                   >
-                    <span>👨‍👧 Parent (Rajesh Verma)</span>
+                    <span>👨‍👧 Parent</span>
                     {effectiveRole === "parent" && <CheckCircle2 className="h-3.5 w-3.5 text-amber-400" />}
                   </button>
                   <button
                     onClick={() => handleRoleQuickSwitch("institution")}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs font-mono flex items-center justify-between hover:bg-purple-500/10 ${effectiveRole === "institution" ? "bg-purple-500/20 text-purple-300 font-bold" : "text-slate-300"}`}
                   >
-                    <span>🏛️ Institution / Admin</span>
+                    <span>🏛️ Institution</span>
                     {effectiveRole === "institution" && <CheckCircle2 className="h-3.5 w-3.5 text-purple-400" />}
                   </button>
                 </div>
@@ -593,6 +660,28 @@ export function Navbar() {
             </div>
 
             <NotificationBell />
+
+            {/* ⚡ Visible Low Data Mode Toggle */}
+            <button
+              type="button"
+              onClick={toggleLowData}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all border cursor-pointer ${
+                isLowData
+                  ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-glow-sm"
+                  : "bg-slate-900/80 text-slate-300 hover:text-white border-white/10 hover:border-white/20"
+              }`}
+              title="Toggle Low Data Mode: reduces animations, compresses assets, and saves cellular data"
+            >
+              <Zap className={`h-3 w-3 ${isLowData ? "text-emerald-400" : "text-amber-400"}`} />
+              <span className="hidden xl:inline text-[11px]">Low Data</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.2 rounded font-bold ${
+                  isLowData ? "bg-emerald-500/30 text-emerald-200" : "bg-white/10 text-slate-400"
+                }`}
+              >
+                {isLowData ? "ON" : "OFF"}
+              </span>
+            </button>
 
             {isAuthenticated ? (
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -666,6 +755,26 @@ export function Navbar() {
               <span className="font-bold text-cyan-300 uppercase">{effectiveRole}</span>
             </div>
 
+            {/* Mobile Low Data Mode Switch */}
+            <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 border border-white/10">
+              <div className="flex items-center gap-2">
+                <Zap className={`h-4 w-4 ${isLowData ? "text-emerald-400" : "text-amber-400"}`} />
+                <div>
+                  <div className="text-xs font-bold text-white">⚡ Low Data Mode</div>
+                  <div className="text-[10px] text-slate-400">Save mobile data & reduce animations</div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={toggleLowData}
+                className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+                  isLowData ? "bg-emerald-500 text-slate-950 shadow-glow-sm" : "bg-white/10 text-slate-300 hover:text-white"
+                }`}
+              >
+                {isLowData ? "ON" : "OFF"}
+              </button>
+            </div>
+
             {/* Mobile Nav Links depending on Role */}
             {isStudent && (
               <div className="grid grid-cols-2 gap-2">
@@ -700,6 +809,22 @@ export function Navbar() {
                 >
                   <Award className="h-4 w-4 text-amber-400" />
                   <span>SCHOLARSHIPS</span>
+                </Link>
+                <Link
+                  href="/opportunities"
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono font-bold text-white flex items-center gap-2"
+                >
+                  <Compass className="h-4 w-4 text-emerald-400" />
+                  <span>CAREER &amp; OPPS</span>
+                </Link>
+                <Link
+                  href="/learning/saved"
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-xs font-mono font-bold text-emerald-300 flex items-center gap-2"
+                >
+                  <HardDrive className="h-4 w-4 text-emerald-400" />
+                  <span>SAVED / OFFLINE</span>
                 </Link>
                 <Link
                   href="/learning/roadmap"

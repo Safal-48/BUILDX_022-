@@ -168,15 +168,15 @@ export default async function AdminPage() {
             <div className="space-y-2 text-xs">
               <div className="flex items-center justify-between p-2 rounded-lg bg-cyan-500/10 text-cyan-300">
                 <span>Student</span>
-                <span className="font-mono font-bold">1 Registered (Pooja / Amit)</span>
+                <span className="font-mono font-bold">1 Registered</span>
               </div>
               <div className="flex items-center justify-between p-2 rounded-lg bg-emerald-500/10 text-emerald-300">
                 <span>Teacher / Faculty</span>
-                <span className="font-mono font-bold">1 Registered (Mrs. Sunita)</span>
+                <span className="font-mono font-bold">1 Registered</span>
               </div>
               <div className="flex items-center justify-between p-2 rounded-lg bg-amber-500/10 text-amber-300">
                 <span>Parent Portal</span>
-                <span className="font-mono font-bold">1 Registered (Rajesh Verma)</span>
+                <span className="font-mono font-bold">1 Registered</span>
               </div>
               <div className="flex items-center justify-between p-2 rounded-lg bg-purple-500/10 text-purple-300">
                 <span>Institution &amp; Municipal</span>

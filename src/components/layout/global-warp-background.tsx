@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
+import { useLowData } from "@/lib/accessibility/low-data-context";
 
 const WarpFieldDefault = dynamic(
   () => import("@/components/3d/warp-field").then((mod) => mod.default),
@@ -25,8 +26,10 @@ interface Particle {
 
 export function GlobalWarpBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { isLowData } = useLowData();
 
   useEffect(() => {
+    if (isLowData) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -163,6 +166,10 @@ export function GlobalWarpBackground() {
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+
+  if (isLowData) {
+    return <div className="fixed inset-0 pointer-events-none -z-10 bg-[#02040A]" />;
+  }
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">

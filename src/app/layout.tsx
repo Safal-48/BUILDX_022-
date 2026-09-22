@@ -10,6 +10,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { GlobalWarpBackground } from "@/components/layout/global-warp-background";
 import { NexoraFloatingBot } from "@/components/ai/nexora-floating-bot";
 import { ClickEffects } from "@/components/effects/click-effects";
+import { LowDataProvider } from "@/lib/accessibility/low-data-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,18 +78,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <GlobalWarpBackground />
-            {/* Global Interactive Click / Hover Effect Overlay */}
-            <ClickEffects color="#06b6d4" interactionMode="sniper" effectSize={80} duration={0.45} />
-            <div className="relative z-10 flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            {/* Global Nexora.ai RAG Chatbot */}
-            <NexoraFloatingBot />
-          </AuthProvider>
+          <LowDataProvider>
+            <AuthProvider>
+              <GlobalWarpBackground />
+              {/* Global Interactive Click / Hover Effect Overlay */}
+              <ClickEffects color="#06b6d4" interactionMode="sniper" effectSize={80} duration={0.45} />
+              <div className="relative z-10 flex min-h-screen flex-col">
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              {/* Global Nexora.ai RAG Chatbot */}
+              <NexoraFloatingBot />
+            </AuthProvider>
+          </LowDataProvider>
         </ThemeProvider>
       </body>
     </html>

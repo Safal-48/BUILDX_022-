@@ -137,3 +137,22 @@
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* ⚡ LOW DATA MODE & ACCESSIBILITY OPTIMIZATIONS */
+.low-data-mode * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+.low-data-mode .canvas-warp-bg,
+.low-data-mode .click-effects-overlay,
+.low-data-mode .heavy-3d-canvas,
+.low-data-mode .ambient-particle-field {
+  display: none !important;
+}
+
+.low-data-mode {
+  text-rendering: optimizeLegibility;
+}
