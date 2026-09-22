@@ -68,7 +68,7 @@ const prefersReducedMotion = (): boolean => {
 
 type Phase = "typing" | "holding" | "deleting";
 
-function __OriginkitBase_TypewriterText(props: TypewriterTextProps) {
+function OriginkitBaseTypewriterText(props: TypewriterTextProps) {
   const {
     prefix = "",
     texts = DEFAULT_TEXTS,
@@ -254,7 +254,7 @@ const __originkitPresetProps = {
 
 export default function TypewriterText(props: TypewriterTextProps) {
   return (
-    <__OriginkitBase_TypewriterText
+    <OriginkitBaseTypewriterText
       {...(__originkitPresetProps as Record<string, unknown>)}
       {...props}
     />
