@@ -69,8 +69,8 @@ export default function HomePage() {
 
   return (
     <div className="relative pb-24 w-full max-w-full overflow-x-hidden">
-      {/* ---------------- HERO SECTION (Screen-Locked, Spacious, Scaled to User's System) ---------------- */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-82px)] flex flex-col justify-between items-center py-8 sm:py-12 lg:py-14">
+      {/* ---------------- HERO SECTION (Balanced, User-Friendly & Visually Connected) ---------------- */}
+      <section className="relative overflow-hidden min-h-[calc(100vh-82px)] flex flex-col justify-center items-center pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
         {/* Background Radial Glow */}
         <div className="absolute inset-0 -z-10 pointer-events-none select-none">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/95" />
@@ -78,54 +78,53 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_60%,rgba(139,92,246,0.1)_0%,transparent_60%)]" />
         </div>
 
-        <Container size="xl" className="w-full flex-1 flex flex-col justify-between my-auto">
-          <div className="w-full max-w-7xl mx-auto text-center flex flex-col items-center justify-between flex-1 gap-6 sm:gap-8 lg:gap-10">
+        <Container size="xl" className="w-full">
+          <div className="w-full max-w-7xl mx-auto text-center flex flex-col items-center">
 
-            {/* 1. Main Headline — Enlarged, Cinematic, Grand Scale */}
-            <div className="space-y-3 sm:space-y-4">
-              <h1 className="font-black tracking-tight leading-[1.06] text-center select-none">
+            {/* 1. Main Headline — Moved Down with Generous Top Room */}
+            <div className="space-y-2.5 sm:space-y-3">
+              <h1 className="font-black tracking-tight leading-[1.08] text-center select-none">
                 <span
                   className="text-white block"
-                  style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.85rem)" }}
+                  style={{ fontSize: "clamp(2.35rem, 4.8vw, 4.5rem)" }}
                 >
                   Empowering Careers with
                 </span>
                 <span
                   className="block mt-1 sm:mt-2"
                   style={{
-                    fontSize: "clamp(2.4rem, 5.2vw, 4.85rem)",
+                    fontSize: "clamp(2.35rem, 4.8vw, 4.5rem)",
                     color: "#55e4d0",
-                    textShadow: "0 0 30px rgba(85, 228, 208, 0.65), 0 0 60px rgba(85, 228, 208, 0.3)",
+                    textShadow: "0 0 28px rgba(85, 228, 208, 0.6), 0 0 55px rgba(85, 228, 208, 0.25)",
                   }}
                 >
                   Skillora
                 </span>
               </h1>
 
-              {/* Subtitle — Generous breathing room, crisp readability */}
+              {/* Subtitle — Crisp & User-Friendly */}
               <p
-                className="text-slate-200/90 font-normal text-center max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed pt-1"
-                style={{ fontSize: "clamp(0.95rem, 1.35vw, 1.22rem)" }}
+                className="text-slate-300 font-normal text-center max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed pt-1"
+                style={{ fontSize: "clamp(0.95rem, 1.25vw, 1.15rem)" }}
               >
                 Autonomous AI Personalized Learning Ecosystem &amp; Continuous Skill Intelligence<br className="hidden sm:inline" />{" "}
                 Platform. Learn smart, improve continuously, and own your future.
               </p>
             </div>
 
-            {/* 2. Hero CTAs — Prominent & Grand Scale */}
-            <div className="flex flex-row items-center justify-center gap-4 sm:gap-6 py-2">
+            {/* 2. Hero CTAs — Brought Close to Subtitle (User-Friendly Proximity) */}
+            <div className="flex flex-row items-center justify-center gap-3.5 sm:gap-5 mt-6 sm:mt-7">
               {/* Primary: Cyan → Blue → Purple gradient pill button */}
               <Link href="/register">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-bold text-white transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-[0_0_30px_rgba(0,180,216,0.4)] cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 sm:px-8 sm:py-3.5 rounded-2xl font-bold text-white transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-[0_0_25px_rgba(0,180,216,0.35)] cursor-pointer text-sm sm:text-base"
                   style={{
                     background: "linear-gradient(90deg, #00b4d8 0%, #3b82f6 50%, #8338ec 100%)",
-                    fontSize: "clamp(0.95rem, 1.15vw, 1.1rem)",
                   }}
                 >
                   <span>Get Started / Register</span>
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <ArrowRight className="h-4 w-4" />
                 </button>
               </Link>
 
@@ -133,19 +132,16 @@ export default function HomePage() {
               <Link href="/login">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-bold text-white border border-slate-700/70 bg-[#0c1424]/90 hover:bg-slate-900/95 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg"
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.15vw, 1.1rem)",
-                  }}
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 sm:px-8 sm:py-3.5 rounded-2xl font-bold text-white border border-slate-700/70 bg-[#0c1424]/90 hover:bg-slate-900/95 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 cursor-pointer shadow-md text-sm sm:text-base"
                 >
-                  <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-[#38bdf8]" />
+                  <Lock className="h-4 w-4 text-[#38bdf8]" />
                   <span>Sign In to Portal</span>
                 </button>
               </Link>
             </div>
 
-            {/* 3. 4 Feature Cards — Substantial, Spacious & Grand Viewport Presence */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full max-w-7xl mx-auto text-left pt-2 pb-2">
+            {/* 3. 4 Feature Cards — Beautifully Positioned Below CTAs */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full max-w-7xl mx-auto text-left mt-10 sm:mt-12 lg:mt-14">
               {/* Card 1: Skill Intelligence */}
               <Link href="/skills" className="group">
                 <div
