@@ -38,6 +38,7 @@ import { Badge } from "@/components/ui/badge";
 import { GlassCard } from "@/components/ui/card";
 import { useLowData } from "@/lib/accessibility/low-data-context";
 import { RadialRevealCard } from "@/components/animations/radial-reveal-card";
+import { TypewriterText } from "@/components/animations/typewriter-text";
 import dynamic from "next/dynamic";
 
 const ScrollHighlight = dynamic(
@@ -187,6 +188,51 @@ export default function HomePage() {
                 style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
               />
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ---------------- TYPEWRITER THOUGHT SEQUENCE BANNER ---------------- */}
+      <section className="relative py-14 sm:py-18 overflow-hidden border-t border-white/[0.08] bg-slate-950/40 backdrop-blur-md">
+        {/* Subtle Ambient Cosmic Glow */}
+        <div className="absolute inset-0 -z-10 pointer-events-none select-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[220px] bg-cyan-500/10 rounded-full blur-[130px]" />
+        </div>
+
+        <Container size="xl" className="text-center flex flex-col items-center justify-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono shadow-[0_0_15px_rgba(6,182,212,0.15)] mb-5">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="tracking-wider uppercase">Every Journey Matters</span>
+          </div>
+
+          <div className="w-full max-w-4xl mx-auto px-4 min-h-[95px] sm:min-h-[115px] flex items-center justify-center">
+            <TypewriterText
+              texts={[
+                "Every student has potential. Not every student gets the same start.",
+                "Marks measure yesterday. Real skills build tomorrow.",
+                "No one should drop out just because no one showed them the way.",
+                "Real talent doesn't ask for privilege — it asks for opportunity.",
+                "From local classrooms to industry floors: capability has no postal code.",
+              ]}
+              font={{
+                fontFamily: "var(--font-sans), Inter, system-ui, sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(1.35rem, 3.2vw, 2.35rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: "1.35em",
+                textAlign: "center",
+              }}
+              color="#FFFFFF"
+              cursorColor="#38bdf8"
+              cursorBorderColor="#0284c7"
+              cursorWidth={6}
+              cursorHeight={34}
+              deletingSpeed={18}
+              transition={{
+                duration: 0.045,
+                delay: 2.8,
+              }}
+            />
           </div>
         </Container>
       </section>
