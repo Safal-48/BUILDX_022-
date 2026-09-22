@@ -37,6 +37,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GlassCard } from "@/components/ui/card";
 import { useLowData } from "@/lib/accessibility/low-data-context";
+import { RadialRevealCard } from "@/components/animations/radial-reveal-card";
 import dynamic from "next/dynamic";
 
 const ScrollHighlight = dynamic(
@@ -140,127 +141,51 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* 3. 4 Feature Cards — Beautifully Positioned Below CTAs */}
+            {/* 3. 4 Feature Cards — Radial Reveal Pointer Cursor Effect */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full max-w-7xl mx-auto text-left mt-10 sm:mt-12 lg:mt-14">
               {/* Card 1: Skill Intelligence */}
-              <Link href="/skills" className="group">
-                <div
-                  className="rounded-2xl border-2 border-teal-500/50 bg-[#040b17]/90 hover:bg-slate-900/95 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:border-teal-400 shadow-[0_0_25px_rgba(20,184,166,0.18)] relative overflow-hidden backdrop-blur-xl"
-                  style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">
-                      SKILL INTELLIGENCE
-                    </span>
-                    <div className="h-9 w-9 rounded-2xl bg-[#031c26] border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform shadow-md">
-                      <Sparkles className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                    </div>
-                  </div>
-
-                  <div className="py-2">
-                    <div
-                      className="font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight"
-                      style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
-                    >
-                      AI-Powered
-                    </div>
-                  </div>
-
-                  <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit text-xs sm:text-[13px]">
-                    <span>Assess • Map • Identify Gaps</span>
-                  </div>
-                </div>
-              </Link>
+              <RadialRevealCard
+                href="/skills"
+                category="SKILL INTELLIGENCE"
+                title="AI-Powered"
+                badge="Assess • Map • Identify Gaps"
+                accentColor="teal"
+                icon={<Sparkles className="h-4 w-4 sm:h-4.5 sm:w-4.5" />}
+                style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
+              />
 
               {/* Card 2: Smart Matching */}
-              <Link href="/opportunities" className="group">
-                <div
-                  className="rounded-2xl border-2 border-cyan-500/40 bg-[#040b17]/90 hover:bg-slate-900/95 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.18)] relative overflow-hidden backdrop-blur-xl"
-                  style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">
-                      SMART MATCHING
-                    </span>
-                    <div className="h-9 w-9 rounded-2xl bg-[#031c26] border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform shadow-md">
-                      <Link2 className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                    </div>
-                  </div>
-
-                  <div className="py-2">
-                    <div
-                      className="font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight"
-                      style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
-                    >
-                      Explainable AI
-                    </div>
-                  </div>
-
-                  <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit text-xs sm:text-[13px]">
-                    <span>Skills • Opportunities</span>
-                  </div>
-                </div>
-              </Link>
+              <RadialRevealCard
+                href="/opportunities"
+                category="SMART MATCHING"
+                title="Explainable AI"
+                badge="Skills • Opportunities"
+                accentColor="cyan"
+                icon={<Link2 className="h-4 w-4 sm:h-4.5 sm:w-4.5" />}
+                style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
+              />
 
               {/* Card 3: Career Readiness */}
-              <Link href="/career-readiness" className="group">
-                <div
-                  className="rounded-2xl border-2 border-cyan-500/40 bg-[#040b17]/90 hover:bg-slate-900/95 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.18)] relative overflow-hidden backdrop-blur-xl"
-                  style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">
-                      CAREER READINESS
-                    </span>
-                    <div className="h-9 w-9 rounded-2xl bg-[#031c26] border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform shadow-md">
-                      <ShieldCheck className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                    </div>
-                  </div>
-
-                  <div className="py-2">
-                    <div
-                      className="font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight"
-                      style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
-                    >
-                      Personalized
-                    </div>
-                  </div>
-
-                  <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit text-xs sm:text-[13px]">
-                    <span>Learn • Improve • Get Ready</span>
-                  </div>
-                </div>
-              </Link>
+              <RadialRevealCard
+                href="/career-readiness"
+                category="CAREER READINESS"
+                title="Personalized"
+                badge="Learn • Improve • Get Ready"
+                accentColor="cyan"
+                icon={<ShieldCheck className="h-4 w-4 sm:h-4.5 sm:w-4.5" />}
+                style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
+              />
 
               {/* Card 4: Academia × Industry */}
-              <Link href="/dashboard" className="group">
-                <div
-                  className="rounded-2xl border-2 border-purple-500/40 bg-[#040b17]/90 hover:bg-slate-900/95 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:border-purple-400 shadow-[0_0_25px_rgba(168,85,247,0.18)] relative overflow-hidden backdrop-blur-xl"
-                  style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold">
-                      ACADEMIA × INDUSTRY
-                    </span>
-                    <div className="h-9 w-9 rounded-2xl bg-[#0b152d] border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform shadow-md">
-                      <Network className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                    </div>
-                  </div>
-
-                  <div className="py-2">
-                    <div
-                      className="font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight"
-                      style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
-                    >
-                      Connected Ecosystem
-                    </div>
-                  </div>
-
-                  <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit text-xs sm:text-[13px] leading-tight">
-                    <span>Students • Institutions • Companies</span>
-                  </div>
-                </div>
-              </Link>
+              <RadialRevealCard
+                href="/dashboard"
+                category="ACADEMIA × INDUSTRY"
+                title="Connected Ecosystem"
+                badge="Students • Institutions • Companies"
+                accentColor="purple"
+                icon={<Network className="h-4 w-4 sm:h-4.5 sm:w-4.5" />}
+                style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
+              />
             </div>
           </div>
         </Container>
