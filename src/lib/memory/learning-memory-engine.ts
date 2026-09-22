@@ -128,3 +128,4 @@ export const SAMPLE_SKILL_DECAY_DATA: SkillDecayItem[] = [
     remedialUrl: "/practice",
   },
 ];
+

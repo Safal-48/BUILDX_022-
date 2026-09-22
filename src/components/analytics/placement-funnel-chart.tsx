@@ -59,3 +59,4 @@ export function PlacementFunnelChart({ funnelStages }: PlacementFunnelChartProps
     </GlassCard>
   );
 }
+

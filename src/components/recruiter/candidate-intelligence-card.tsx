@@ -190,3 +190,4 @@ export function CandidateIntelligenceCard({ evaluation }: CandidateIntelligenceC
     </GlassCard>
   );
 }
+

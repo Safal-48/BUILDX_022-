@@ -652,3 +652,4 @@ export interface DigitalPortfolioSummary {
   documents: Array<DocumentEntity & { isVerified: boolean; verifierBadge?: string }>;
 }
 
+

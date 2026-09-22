@@ -463,3 +463,4 @@ export function getSingleCandidateEvaluation(
   const req = DEFAULT_OPPORTUNITY_REQUIREMENTS.find((r) => r.id === reqId) || DEFAULT_OPPORTUNITY_REQUIREMENTS[0];
   return evaluateCandidateForOpportunity(candidate, req);
 }
+

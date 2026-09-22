@@ -38,3 +38,4 @@ export const SYSTEM_STATUS = {
 } as const;
 
 export type SystemStatusType = (typeof SYSTEM_STATUS)[keyof typeof SYSTEM_STATUS];
+

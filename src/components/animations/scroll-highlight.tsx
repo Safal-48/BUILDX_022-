@@ -42,46 +42,53 @@ export interface ScrollHighlightProps {
 }
 
 const CHAR_STAGGER = 0.03;
-const WORD_STAGGER = 0.08;
+const WORD_STAGGER = 0.06;
 
 export default function ScrollHighlight({
   className,
   containerClassName,
-  text = "Bridging the gap between what students learn, and what industry needs. Turning skills into opportunities, and potential into careers.",
+  text = "Bridging the gap between where students are, and where their future can take them.\n\nConnecting learning, support, and opportunity — so every student can learn, grow, and move forward with confidence.",
   font = {
     fontFamily: "var(--font-sans), Inter, system-ui, sans-serif",
-    fontSize: "clamp(1.75rem, 4vw, 3.25rem)",
-    fontWeight: 700,
-    letterSpacing: "-0.03em",
-    lineHeight: "1.25em",
+    fontSize: "clamp(1.75rem, 3.8vw, 3.25rem)",
+    fontWeight: 800,
+    letterSpacing: "-0.025em",
+    lineHeight: "1.35em",
     textAlign: "center",
   },
   dimColor = "rgba(255, 255, 255, 0.18)",
   highlightColor = "#FFFFFF",
   splitBy = "words",
   scrollStart = "top 75%",
-  scrollEnd = "bottom 40%",
+  scrollEnd = "bottom 45%",
   scrub = 0.8,
   style,
 }: ScrollHighlightProps) {
-  const containerRef = useRef<HTMLParagraphElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const words = text.trim().split(/\s+/).filter(Boolean);
-  const chars = Array.from(text);
+
+  // Split text by double newlines or single newlines to preserve distinct paragraphs
+  const paragraphs = text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
   const stagger = splitBy === "characters" ? CHAR_STAGGER : WORD_STAGGER;
 
   useEffect(() => {
-    const paragraph = containerRef.current;
-    if (!paragraph || typeof window === "undefined") return;
+    const container = containerRef.current;
+    if (!container || typeof window === "undefined") return;
 
-    const targets = paragraph.querySelectorAll(
+    const targets = container.querySelectorAll(
       splitBy === "characters" ? ".char" : ".word"
     );
+
+    if (!targets.length) return;
 
     const ctx = gsap.context(() => {
       gsap.set(targets, {
         color: dimColor,
-        opacity: 0.35,
+        opacity: 0.28,
       });
 
       gsap.to(targets, {
@@ -90,15 +97,22 @@ export default function ScrollHighlight({
         stagger,
         ease: "none",
         scrollTrigger: {
-          trigger: paragraph,
+          trigger: container,
           start: scrollStart,
           end: scrollEnd,
           scrub: scrub === true ? 1 : scrub,
         },
       });
-    }, paragraph);
+    }, container);
 
-    return () => ctx.revert();
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => {
+      clearTimeout(refreshTimer);
+      ctx.revert();
+    };
   }, [
     text,
     dimColor,
@@ -113,48 +127,55 @@ export default function ScrollHighlight({
   return (
     <div
       ref={wrapperRef}
-      className={cn("w-full py-16 md:py-24 flex items-center justify-center relative", containerClassName)}
+      className={cn("w-full py-8 sm:py-12 flex items-center justify-center relative", containerClassName)}
       style={style}
     >
-      <p
+      <div
         ref={containerRef}
-        className={cn("max-w-5xl mx-auto px-4 leading-tight font-bold select-none", className)}
+        className={cn("max-w-4xl mx-auto px-4 leading-tight font-extrabold select-none text-center", className)}
         style={{
           margin: 0,
-          display: "inline-block",
-          whiteSpace: "pre-wrap",
           color: dimColor,
           ...font,
         }}
       >
-        {splitBy === "characters"
-          ? chars.map((char, index) => (
-              <span
-                key={`${char}-${index}`}
-                className="char transition-colors duration-100 inline-block"
-                style={{
-                  color: dimColor,
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))
-          : words.map((word, index) => (
-              <React.Fragment key={`${word}-${index}`}>
-                <span
-                  className="word transition-colors duration-100 inline-block"
-                  style={{
-                    color: dimColor,
-                  }}
-                >
-                  {word}
-                </span>
-                {index < words.length - 1 ? " " : null}
-              </React.Fragment>
-            ))}
-      </p>
+        {paragraphs.map((p, pIdx) => {
+          const words = p.split(/\s+/).filter(Boolean);
+          const chars = Array.from(p);
+
+          return (
+            <div
+              key={`paragraph-${pIdx}`}
+              className={cn("block", pIdx > 0 && "mt-6 sm:mt-8")}
+            >
+              {splitBy === "characters"
+                ? chars.map((char, index) => (
+                    <span
+                      key={`${char}-${index}`}
+                      className="char inline-block will-change-[color,opacity]"
+                      style={{ color: dimColor, opacity: 0.28 }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  ))
+                : words.map((word, index) => (
+                    <React.Fragment key={`${word}-${index}`}>
+                      <span
+                        className="word inline-block will-change-[color,opacity]"
+                        style={{ color: dimColor, opacity: 0.28 }}
+                      >
+                        {word}
+                      </span>
+                      {index < words.length - 1 ? " " : null}
+                    </React.Fragment>
+                  ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 export { ScrollHighlight };
+

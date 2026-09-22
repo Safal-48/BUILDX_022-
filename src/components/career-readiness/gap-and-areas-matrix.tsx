@@ -180,3 +180,4 @@ export function GapAndAreasMatrix({ profile }: GapAndAreasMatrixProps) {
     </div>
   );
 }
+

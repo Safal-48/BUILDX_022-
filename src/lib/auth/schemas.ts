@@ -117,3 +117,4 @@ export const institutionOnboardingSchema = z.object({
 });
 
 export type InstitutionOnboardingInput = z.infer<typeof institutionOnboardingSchema>;
+

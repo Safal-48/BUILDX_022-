@@ -35,3 +35,4 @@ export function RiUserFillIcon({
 }
 
 export default RiUserFillIcon;
+

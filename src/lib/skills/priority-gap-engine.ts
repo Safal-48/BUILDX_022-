@@ -151,3 +151,4 @@ export function calculateSkillGapPriorities(
 ): PriorityGapItem[] {
   return SAMPLE_PRIORITY_GAPS;
 }
+

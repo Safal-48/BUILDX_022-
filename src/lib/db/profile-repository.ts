@@ -396,3 +396,4 @@ export async function deleteDocument(userId: string, docId: string): Promise<boo
   return globalRelationalStore._titanDocuments!.delete(docId);
 }
 
+

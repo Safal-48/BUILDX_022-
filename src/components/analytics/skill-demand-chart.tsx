@@ -66,3 +66,4 @@ export function SkillDemandChart({ demands }: SkillDemandChartProps) {
     </GlassCard>
   );
 }
+

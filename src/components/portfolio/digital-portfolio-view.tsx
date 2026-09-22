@@ -409,3 +409,4 @@ export function DigitalPortfolioView({ portfolio, onRefresh }: DigitalPortfolioV
     </div>
   );
 }
+

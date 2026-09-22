@@ -160,3 +160,4 @@ LEFT JOIN Orders ON Customers.id = Orders.customer_id;`,
 export async function getTargetedIntervention(topicId?: string): Promise<TargetedIntervention> {
   return SQL_JOIN_INTERVENTION;
 }
+

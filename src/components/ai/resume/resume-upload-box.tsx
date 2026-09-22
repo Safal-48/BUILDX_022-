@@ -372,3 +372,4 @@ export function ResumeUploadBox({ onAnalyze, isLoading = false }: ResumeUploadBo
     </div>
   );
 }
+

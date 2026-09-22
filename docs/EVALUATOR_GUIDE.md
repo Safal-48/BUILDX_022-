@@ -49,3 +49,4 @@ Navigate to: **[http://localhost:3000](http://localhost:3000)**
 - [x] Functional low-data toggle with bandwidth savings telemetry
 - [x] Genuine offline study caching (no fake offline indicators)
 - [x] Clear role segregation for Student, Teacher, Parent, and Institution
+

@@ -54,8 +54,9 @@ export const viewport: Viewport = {
   ],
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // Allow user scaling for accessibility while still locking layout via CSS
+  maximumScale: 5,
+  userScalable: true,
 };
 
 export default function RootLayout({
@@ -97,3 +98,4 @@ export default function RootLayout({
     </html>
   );
 }
+

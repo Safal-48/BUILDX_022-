@@ -50,3 +50,4 @@ Students in tier-2 and tier-3 regions face erratic cellular signals and shared h
 - **Role-Based Access Control (RBAC):** Strict partition between Student, Teacher, Parent, and Administrator sessions.
 - **Child Privacy Protection:** Parental consent triggers for student contact and external job applications.
 - **No False Outcome Claims:** Socratic guidance strictly distinguishes between AI diagnostic assistance and certified credentials.
+

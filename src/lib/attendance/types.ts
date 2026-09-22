@@ -129,3 +129,4 @@ export interface DailyAttendanceSession {
   recordedBy: string;
   lastUpdated: string;
 }
+

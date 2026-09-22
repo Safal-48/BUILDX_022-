@@ -50,3 +50,4 @@ export function Tooltip({ content, children, side = "top", className }: TooltipP
     </div>
   );
 }
+

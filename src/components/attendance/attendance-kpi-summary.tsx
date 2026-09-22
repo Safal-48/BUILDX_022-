@@ -222,3 +222,4 @@ export function AttendanceKpiSummary({
     </div>
   );
 }
+

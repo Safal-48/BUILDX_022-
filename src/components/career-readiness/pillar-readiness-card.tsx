@@ -153,3 +153,4 @@ export function PillarReadinessCard({ pillarKey, pillar }: PillarReadinessCardPr
     </GlassCard>
   );
 }
+

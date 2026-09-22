@@ -83,3 +83,4 @@ CREATE INDEX IF NOT EXISTS idx_credential_verifications_type ON public.credentia
 CREATE INDEX IF NOT EXISTS idx_mentorship_profiles_user ON public.mentorship_profiles(user_id);
 CREATE INDEX IF NOT EXISTS idx_mentorship_sessions_student ON public.mentorship_sessions(student_id);
 CREATE INDEX IF NOT EXISTS idx_mentorship_sessions_mentor ON public.mentorship_sessions(mentor_id);
+

@@ -185,3 +185,4 @@ export default function SkillsIntelligencePage() {
     </div>
   );
 }
+

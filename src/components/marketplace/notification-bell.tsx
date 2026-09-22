@@ -170,12 +170,12 @@ export function NotificationBell() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-muted-foreground hover:text-foreground transition-all cursor-pointer"
+        className="relative p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all cursor-pointer shadow-sm"
         title="Notifications"
       >
-        <Bell className="h-4 w-4 text-foreground/80" />
+        <Bell className="h-4.5 w-4.5 text-slate-200" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 h-4 min-w-[16px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(244,63,94,0.6)] animate-pulse">
+          <span className="absolute -top-1 -right-1 h-4.5 min-w-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(244,63,94,0.6)] animate-pulse">
             {unreadCount}
           </span>
         )}
@@ -293,3 +293,4 @@ export function NotificationBell() {
     </div>
   );
 }
+

@@ -41,3 +41,4 @@ export const isSupabaseConfigured = (): boolean => {
     !key.includes("placeholder_key")
   );
 };
+

@@ -185,3 +185,4 @@ export function CertificationsCard({
     </GlassCard>
   );
 }
+

@@ -248,3 +248,4 @@ export function InstitutionProfileView({ profile }: { profile: FullUserProfile }
     </div>
   );
 }
+

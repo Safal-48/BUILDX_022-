@@ -118,3 +118,4 @@ export function CandidateTalentRadar({ candidates }: CandidateTalentRadarProps) 
     </div>
   );
 }
+

@@ -24,3 +24,4 @@ cloudflared.stdout.on('data', (data) => {
 cloudflared.on('close', (code) => {
   console.log('cloudflared process closed with code', code);
 });
+

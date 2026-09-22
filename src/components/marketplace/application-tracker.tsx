@@ -161,3 +161,4 @@ export function ApplicationTracker({ applications }: ApplicationTrackerProps) {
     </div>
   );
 }
+

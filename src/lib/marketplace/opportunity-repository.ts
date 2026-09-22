@@ -1348,3 +1348,4 @@ export async function markNotificationAsRead(
   notif.isRead = true;
   return true;
 }
+

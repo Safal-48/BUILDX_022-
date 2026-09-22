@@ -172,3 +172,4 @@ export function ProfileHeader({ profile, isOwner = true, onEditClick }: ProfileH
     </GlassCard>
   );
 }
+

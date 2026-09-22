@@ -225,7 +225,7 @@ export function Navbar() {
       }`}
     >
       <Container size="xl">
-        <div className="flex h-[72px] items-center justify-between gap-3 sm:gap-6 w-full">
+        <div className="flex h-[82px] items-center justify-between gap-4 sm:gap-7 w-full">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3 shrink-0">
             <Link href="/" className="flex items-center gap-3 group">
@@ -234,16 +234,16 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation - Dynamically Customized by Active Role */}
-          <nav className="hidden xl:flex items-center justify-center gap-1.5 flex-1 max-w-2xl mx-auto">
+          <nav className="hidden xl:flex items-center justify-center gap-2 flex-1 max-w-3xl mx-auto">
             {/* ---------------- 1. STUDENT PERSPECTIVE NAVIGATION ---------------- */}
             {isStudent && (
               <>
                 <Link
                   href="/dashboard"
-                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname === "/dashboard"
                       ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   HOME
@@ -251,13 +251,13 @@ export function Navbar() {
 
                 <Link
                   href="/assessment"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname?.startsWith("/assessment")
                       ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
-                  <Brain className="h-3.5 w-3.5 text-cyan-400" />
+                  <Brain className="h-4 w-4 text-cyan-400" />
                   <span>ASSESS</span>
                 </Link>
 
@@ -266,16 +266,16 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => setOpenDropdown(openDropdown === "learning" ? null : "learning")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold tracking-wide transition-all whitespace-nowrap ${
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold tracking-wide transition-all whitespace-nowrap ${
                       openDropdown === "learning" || pathname?.startsWith("/learning")
                         ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-glow-sm"
-                        : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                        : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                     }`}
                   >
-                    <BookOpen className="h-3.5 w-3.5 text-cyan-400" />
+                    <BookOpen className="h-4 w-4 text-cyan-400" />
                     <span>MY LEARNING</span>
                     <ChevronDown
-                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                      className={`h-4 w-4 transition-transform duration-200 ${
                         openDropdown === "learning" ? "rotate-180 text-cyan-400" : "text-muted-foreground"
                       }`}
                     />
@@ -323,25 +323,25 @@ export function Navbar() {
 
                 <Link
                   href="/scholarships"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname?.startsWith("/scholarships")
                       ? "bg-amber-500/15 text-amber-300 border border-amber-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
-                  <Award className="h-3.5 w-3.5 text-amber-400" />
+                  <Award className="h-4 w-4 text-amber-400" />
                   <span>SCHOLARSHIPS</span>
                 </Link>
 
                 <Link
                   href="/opportunities"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname?.startsWith("/opportunities")
                       ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
-                  <Compass className="h-3.5 w-3.5 text-emerald-400" />
+                  <Compass className="h-4 w-4 text-emerald-400" />
                   <span>CAREER &amp; OPPS</span>
                 </Link>
               </>
@@ -352,10 +352,10 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/teacher"
-                  className={`px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname === "/dashboard/teacher"
                       ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   DASHBOARD
@@ -363,54 +363,54 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/teacher?tab=students"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Users className="h-3.5 w-3.5 text-cyan-400" />
+                  <Users className="h-4 w-4 text-cyan-400" />
                   <span>STUDENTS</span>
                 </Link>
 
                 <Link
                   href="/teacher/attendance"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname?.startsWith("/teacher/attendance")
                       ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
-                  <Calendar className="h-3.5 w-3.5 text-emerald-400" />
+                  <Calendar className="h-4 w-4 text-emerald-400" />
                   <span>ATTENDANCE</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=at-risk"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/10 border border-rose-500/30"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/10 border border-rose-500/30"
                 >
-                  <AlertTriangle className="h-3.5 w-3.5 text-rose-400 animate-pulse" />
+                  <AlertTriangle className="h-4 w-4 text-rose-400 animate-pulse" />
                   <span>AT-RISK STUDENTS</span>
                   <span className="h-2 w-2 rounded-full bg-rose-500 animate-ping" />
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=insights"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Brain className="h-3.5 w-3.5 text-purple-400" />
+                  <Brain className="h-4 w-4 text-purple-400" />
                   <span>ACADEMIC INSIGHTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=alerts"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Bell className="h-3.5 w-3.5 text-amber-400" />
+                  <Bell className="h-4 w-4 text-amber-400" />
                   <span>ALERTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=interventions"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <History className="h-3.5 w-3.5 text-cyan-400" />
+                  <History className="h-4 w-4 text-cyan-400" />
                   <span>INTERVENTIONS</span>
                 </Link>
               </>
@@ -421,10 +421,10 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/parent"
-                  className={`px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname === "/dashboard/parent"
                       ? "bg-amber-500/15 text-amber-300 border border-amber-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   HOME
@@ -432,42 +432,42 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/parent?tab=child"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <UserCheck className="h-3.5 w-3.5 text-cyan-400" />
+                  <UserCheck className="h-4 w-4 text-cyan-400" />
                   <span>CHILD OVERVIEW</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=attendance"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-amber-300 hover:text-white hover:bg-amber-500/10 border border-amber-500/30"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-amber-300 hover:text-white hover:bg-amber-500/10 border border-amber-500/30"
                 >
-                  <Calendar className="h-3.5 w-3.5 text-amber-400" />
+                  <Calendar className="h-4 w-4 text-amber-400" />
                   <span>ATTENDANCE</span>
                   <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300">74.2%</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=academics"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+                  <TrendingUp className="h-4 w-4 text-emerald-400" />
                   <span>ACADEMIC PROGRESS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=alerts"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Bell className="h-3.5 w-3.5 text-rose-400" />
+                  <Bell className="h-4 w-4 text-rose-400" />
                   <span>ALERTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=updates"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <BookOpen className="h-3.5 w-3.5 text-purple-400" />
+                  <BookOpen className="h-4 w-4 text-purple-400" />
                   <span>SCHOOL UPDATES</span>
                 </Link>
               </>
@@ -478,10 +478,10 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/institution"
-                  className={`px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap ${
                     pathname === "/dashboard/institution"
                       ? "bg-purple-500/15 text-purple-300 border border-purple-500/40 shadow-glow-sm"
-                      : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                   }`}
                 >
                   DASHBOARD
@@ -489,57 +489,57 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/institution?tab=students"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Users className="h-3.5 w-3.5 text-cyan-400" />
+                  <Users className="h-4 w-4 text-cyan-400" />
                   <span>STUDENTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=attendance"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Calendar className="h-3.5 w-3.5 text-emerald-400" />
+                  <Calendar className="h-4 w-4 text-emerald-400" />
                   <span>ATTENDANCE ANALYTICS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=scholarships"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Award className="h-3.5 w-3.5 text-amber-400" />
+                  <Award className="h-4 w-4 text-amber-400" />
                   <span>SCHOLARSHIP AWARENESS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=dropout"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/10 border border-rose-500/30"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/10 border border-rose-500/30"
                 >
-                  <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
+                  <AlertTriangle className="h-4 w-4 text-rose-400" />
                   <span>DROPOUT ANALYTICS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=engagement"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Zap className="h-3.5 w-3.5 text-cyan-400" />
+                  <Zap className="h-4 w-4 text-cyan-400" />
                   <span>LEARNING ENGAGEMENT</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=opportunities"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 >
-                  <Compass className="h-3.5 w-3.5 text-emerald-400" />
+                  <Compass className="h-4 w-4 text-emerald-400" />
                   <span>OPPORTUNITIES</span>
                 </Link>
 
                 <Link
                   href="/admin"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/15 border border-rose-500/30"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold transition-all whitespace-nowrap text-rose-300 hover:text-white hover:bg-rose-500/15 border border-rose-500/30"
                 >
-                  <ShieldCheck className="h-3.5 w-3.5 text-rose-400" />
+                  <ShieldCheck className="h-4 w-4 text-rose-400" />
                   <span>ADMIN</span>
                 </Link>
               </>
@@ -550,16 +550,16 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === "tools" ? null : "tools")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold tracking-wide transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold tracking-wide transition-all whitespace-nowrap ${
                   openDropdown === "tools"
                     ? "bg-violet-500/15 text-violet-300 border border-violet-500/40 shadow-glow-sm"
-                    : "text-slate-300 hover:text-white hover:bg-white/[0.06]"
+                    : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 }`}
               >
-                <Sparkles className="h-3.5 w-3.5 text-violet-400" />
+                <Sparkles className="h-4 w-4 text-violet-400" />
                 <span>MORE TOOLS</span>
                 <ChevronDown
-                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                  className={`h-4 w-4 transition-transform duration-200 ${
                     openDropdown === "tools" ? "rotate-180 text-violet-400" : "text-muted-foreground"
                   }`}
                 />
@@ -608,18 +608,18 @@ export function Navbar() {
           </nav>
 
           {/* Right Action Bar */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             {/* Quick Role Switcher (For rapid testing & demo review) */}
             <div className="relative" onClick={(e) => e.stopPropagation()}>
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === "role_switcher" ? null : "role_switcher")}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-slate-900/80 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 transition-all"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-slate-900/90 border border-cyan-500/35 hover:border-cyan-400 text-cyan-300 transition-all shadow-sm"
                 title="Switch role view for demonstration"
               >
-                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="uppercase text-[11px]">{effectiveRole}</span>
-                <ChevronDown className={`h-3 w-3 transition-transform ${openDropdown === "role_switcher" ? "rotate-180" : ""}`} />
+                <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="uppercase text-xs sm:text-[12px] tracking-wide">{effectiveRole}</span>
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform ${openDropdown === "role_switcher" ? "rotate-180" : ""}`} />
               </button>
 
               {openDropdown === "role_switcher" && (
@@ -665,17 +665,17 @@ export function Navbar() {
             <button
               type="button"
               onClick={toggleLowData}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all border cursor-pointer ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono font-bold transition-all border cursor-pointer ${
                 isLowData
                   ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-glow-sm"
                   : "bg-slate-900/80 text-slate-300 hover:text-white border-white/10 hover:border-white/20"
               }`}
               title="Toggle Low Data Mode: reduces animations, compresses assets, and saves cellular data"
             >
-              <Zap className={`h-3 w-3 ${isLowData ? "text-emerald-400" : "text-amber-400"}`} />
-              <span className="hidden xl:inline text-[11px]">Low Data</span>
+              <Zap className={`h-3.5 w-3.5 ${isLowData ? "text-emerald-400" : "text-amber-400"}`} />
+              <span className="hidden xl:inline text-xs font-bold">Low Data</span>
               <span
-                className={`text-[10px] px-1.5 py-0.2 rounded font-bold ${
+                className={`text-[10px] px-2 py-0.5 rounded font-bold ${
                   isLowData ? "bg-emerald-500/30 text-emerald-200" : "bg-white/10 text-slate-400"
                 }`}
               >
@@ -684,33 +684,33 @@ export function Navbar() {
             </button>
 
             {isAuthenticated ? (
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-2 sm:gap-2.5">
                 <Link href="/profile">
-                  <Button variant="outline" size="sm" className="gap-1.5 border-white/10 hover:border-cyan-500/40 px-2.5 sm:px-3">
-                    <RiUserFillIcon className="h-3.5 w-3.5 text-cyan-400" />
-                    <span className="hidden sm:inline font-mono text-xs">{user?.fullName || "Profile"}</span>
+                  <Button variant="outline" size="sm" className="gap-2 border-white/10 hover:border-cyan-500/40 px-3.5 py-2 h-10">
+                    <RiUserFillIcon className="h-4 w-4 text-cyan-400" />
+                    <span className="hidden sm:inline font-mono text-xs sm:text-[13px] font-bold">{user?.fullName || "Profile"}</span>
                   </Button>
                 </Link>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={logout}
-                  className="text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 h-8 w-8 sm:h-9 sm:w-9"
+                  className="text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 h-10 w-10 rounded-xl"
                   title="Log Out"
                 >
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="h-4.5 w-4.5" />
                 </Button>
               </div>
             ) : (
-              <div className="hidden sm:flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2.5">
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="font-mono text-xs text-slate-300 hover:text-white">
+                  <Button variant="ghost" size="sm" className="font-mono text-xs sm:text-[13px] font-bold text-slate-300 hover:text-white h-10 px-3.5">
                     Log In
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button variant="cyber" size="sm" className="font-mono text-xs gap-1.5">
-                    Start Learning <ArrowRight className="h-3.5 w-3.5" />
+                  <Button variant="cyber" size="sm" className="font-mono text-xs sm:text-[13px] font-bold gap-2 h-10 px-4">
+                    Start Learning <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
@@ -973,3 +973,4 @@ export function Navbar() {
     </header>
   );
 }
+

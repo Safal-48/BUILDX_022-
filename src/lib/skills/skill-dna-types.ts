@@ -32,3 +32,4 @@ export interface SkillDNAItem {
   practiceHistory: SkillPracticeLog[];
   reassessmentHistory: SkillReassessmentLog[];
 }
+

@@ -240,3 +240,4 @@ export async function requireRole(allowedRoles: UserRole[]): Promise<UserProfile
   }
   return session;
 }
+

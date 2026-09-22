@@ -36,3 +36,4 @@ POST/GET http://localhost:3000/api/*
 ### 4. Low-Data Offline Synchronizer
 - **`GET /api/offline/manifest`**
   - **Response:** Hash-verified cache manifest for offline notes, diagrams, and questions.
+

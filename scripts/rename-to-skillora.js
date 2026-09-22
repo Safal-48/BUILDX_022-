@@ -28,3 +28,4 @@ function replaceInDir(dir) {
 replaceInDir(path.join(__dirname, '../src'));
 replaceInDir(path.join(__dirname, '../README.md'));
 console.log('All replacements completed successfully!');
+

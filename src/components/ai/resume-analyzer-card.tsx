@@ -282,3 +282,4 @@ export function ResumeAnalyzerCard({ targetRole, onAnalyzeResume }: ResumeAnalyz
     </div>
   );
 }
+

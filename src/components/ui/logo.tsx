@@ -13,15 +13,15 @@ interface LogoProps {
 }
 
 const sizeMap = {
-  sm: { icon: 30, text: "text-base", tagline: "text-[8px]" },
-  md: { icon: 40, text: "text-lg", tagline: "text-[9px]" },
-  lg: { icon: 56, text: "text-2xl", tagline: "text-[11px]" },
-  xl: { icon: 76, text: "text-3xl", tagline: "text-xs" },
+  sm: { icon: 32, text: "text-base", tagline: "text-[9px]" },
+  md: { icon: 44, text: "text-xl", tagline: "text-[10.5px]" },
+  lg: { icon: 56, text: "text-2xl", tagline: "text-[12px]" },
+  xl: { icon: 76, text: "text-3xl", tagline: "text-sm" },
 };
 
 export function SkilloraIcon({
   className,
-  size = 40,
+  size = 44,
 }: {
   className?: string;
   size?: number;
@@ -60,7 +60,7 @@ export function SkilloraLogo({
   }
 
   return (
-    <div className={cn("inline-flex items-center gap-3 group select-none", className)}>
+    <div className={cn("inline-flex items-center gap-3.5 group select-none", className)}>
       <SkilloraIcon
         size={currentSize.icon}
         className="group-hover:scale-105 transition-transform duration-300"
@@ -68,17 +68,17 @@ export function SkilloraLogo({
       {showText && (
         <div className="flex flex-col">
           <div className="flex items-center tracking-tight font-extrabold leading-none font-mono">
-            <span className="text-white group-hover:text-cyan-300 transition-colors text-lg sm:text-xl font-black">
+            <span className="text-white group-hover:text-cyan-300 transition-colors text-xl sm:text-2xl font-black">
               Skill
             </span>
-            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent group-hover:brightness-125 transition-all text-lg sm:text-xl font-black">
+            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent group-hover:brightness-125 transition-all text-xl sm:text-2xl font-black">
               ora
             </span>
           </div>
           {showTagline && (
             <span
               className={cn(
-                "hidden sm:block font-mono tracking-wider text-muted-foreground uppercase mt-1 whitespace-nowrap text-[9px] text-cyan-300/80",
+                "hidden sm:block font-mono tracking-wider uppercase mt-1 whitespace-nowrap text-[10px] text-cyan-300/90 font-semibold",
                 currentSize.tagline
               )}
             >
@@ -96,3 +96,4 @@ export const KaushalSetuIcon = SkilloraIcon;
 export const KaushalSetuLogo = SkilloraLogo;
 
 export default SkilloraLogo;
+

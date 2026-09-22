@@ -404,3 +404,4 @@ export const INITIAL_STUDENT_APPLICATIONS: ScholarshipApplication[] = [
     lastUpdated: "3 days ago",
   },
 ];
+

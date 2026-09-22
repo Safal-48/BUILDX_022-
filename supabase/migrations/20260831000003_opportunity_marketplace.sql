@@ -86,3 +86,4 @@ CREATE POLICY "Recruiters can update status of applications to their opportuniti
 );
 
 CREATE POLICY "Users can view and manage own notifications" ON public.user_notifications FOR ALL USING (auth.uid() = user_id);
+

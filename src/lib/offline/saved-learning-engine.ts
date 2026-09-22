@@ -353,3 +353,4 @@ export function downloadNotesAsTxt(filename: string, content: string) {
   document.body.removeChild(anchor);
   URL.revokeObjectURL(url);
 }
+

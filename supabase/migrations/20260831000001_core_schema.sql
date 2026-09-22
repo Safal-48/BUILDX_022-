@@ -241,3 +241,4 @@ CREATE POLICY "Users can manage own projects" ON public.projects FOR ALL USING (
 CREATE POLICY "Users can manage own certifications" ON public.certifications FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "Users can manage own achievements" ON public.achievements FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "Users can manage own documents" ON public.documents FOR ALL USING (auth.uid() = user_id);
+

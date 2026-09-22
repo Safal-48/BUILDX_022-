@@ -68,3 +68,4 @@ export function AIOrb({ status = "idle", size = "md" }: AIOrbProps) {
     </div>
   );
 }
+

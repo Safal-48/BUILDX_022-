@@ -346,3 +346,4 @@ export function PersonalSkillDNA({ skills = DEFAULT_SKILL_DNA }: PersonalSkillDN
     </div>
   );
 }
+

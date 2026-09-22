@@ -151,3 +151,4 @@ export async function getAICareerResponse(
     contextBadges: result.contextBadges,
   };
 }
+

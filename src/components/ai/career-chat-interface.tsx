@@ -363,3 +363,4 @@ export function CareerChatInterface({ report, onSendMessage }: CareerChatInterfa
     </div>
   );
 }
+

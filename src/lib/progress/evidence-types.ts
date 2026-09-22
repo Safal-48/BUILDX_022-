@@ -144,3 +144,4 @@ export const SAMPLE_SKILL_EVIDENCE_DATA: SkillEvidenceItem[] = [
     evidenceNotes: "High-confidence verified competency stamped on public portfolio.",
   },
 ];
+

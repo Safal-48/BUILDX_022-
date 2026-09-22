@@ -109,3 +109,4 @@ CREATE POLICY "Public read for target roles" ON public.target_roles FOR SELECT U
 
 CREATE POLICY "Users can manage own assessment sessions" ON public.assessment_sessions FOR ALL USING (auth.uid() = user_id);
 CREATE POLICY "Users can view and manage own evaluations" ON public.student_skill_evaluations FOR ALL USING (auth.uid() = user_id);
+

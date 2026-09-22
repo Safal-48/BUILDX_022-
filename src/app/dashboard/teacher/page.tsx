@@ -1023,3 +1023,4 @@ export default function TeacherDashboardPage() {
     </Suspense>
   );
 }
+

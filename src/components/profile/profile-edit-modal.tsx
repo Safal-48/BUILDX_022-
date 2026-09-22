@@ -135,3 +135,4 @@ export function ProfileEditModal({ profile, isOpen, onClose, onSave }: ProfileEd
     </div>
   );
 }
+

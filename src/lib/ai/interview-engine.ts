@@ -1167,3 +1167,4 @@ export function generatePerformanceInsight(report: FinalInterviewReport): string
   }
   return "Fundamental concepts demonstrated; continue focused practice drills on system trade-offs to reach interview-ready status.";
 }
+

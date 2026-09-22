@@ -1790,3 +1790,4 @@ tsCode += `}\n`;
 const targetPath = path.join(__dirname, '../src/lib/skills/assessment-questions-bank.ts');
 fs.writeFileSync(targetPath, tsCode, 'utf8');
 console.log(`Successfully wrote question bank to ${targetPath}`);
+

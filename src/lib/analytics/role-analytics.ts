@@ -585,3 +585,4 @@ export async function submitAcademicianProposal(
   globalAcademicianStore._titanAcademicianProposals!.set(newProposal.id, newProposal);
   return newProposal;
 }
+

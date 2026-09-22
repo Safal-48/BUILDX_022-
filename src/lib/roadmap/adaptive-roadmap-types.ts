@@ -60,3 +60,4 @@ export interface AdaptiveTrackRoadmap {
   currentTrackProgress: number; // 0 - 100
   nodes: AdaptiveRoadmapNode[];
 }
+

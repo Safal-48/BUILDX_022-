@@ -105,3 +105,4 @@ export const cameraStreamManager = new CameraStreamManager();
 export const stopAllCameraStreams = () => cameraStreamManager.stopAll();
 export const stopCameraStream = (stream?: MediaStream | null) => cameraStreamManager.stopStream(stream);
 export const registerCameraStream = (stream: MediaStream) => cameraStreamManager.register(stream);
+

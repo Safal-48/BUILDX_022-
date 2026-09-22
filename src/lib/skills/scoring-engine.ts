@@ -315,3 +315,4 @@ function formatCategoryName(category: QuestionCategory): string {
       return "Career & Domain Focus";
   }
 }
+

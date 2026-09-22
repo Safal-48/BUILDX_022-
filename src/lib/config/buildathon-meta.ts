@@ -33,3 +33,4 @@ export const BUILDATHON_MANIFEST: BuildathonMetadata = {
     localIndustryPipelines: true,
   },
 };
+

@@ -143,3 +143,4 @@ export function EcosystemVisualizerCanvas({ height = "420px" }: { height?: strin
     </SceneContainer>
   );
 }
+

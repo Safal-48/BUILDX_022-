@@ -43,3 +43,4 @@ export function IndustryOverviewCards({ analytics }: IndustryOverviewCardsProps)
     </div>
   );
 }
+

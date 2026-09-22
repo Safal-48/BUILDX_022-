@@ -43,3 +43,4 @@ export function InstitutionMetricCards({ analytics }: InstitutionMetricCardsProp
     </div>
   );
 }
+

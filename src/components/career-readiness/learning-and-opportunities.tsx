@@ -170,3 +170,4 @@ export function LearningAndOpportunities({ profile }: LearningAndOpportunitiesPr
     </div>
   );
 }
+

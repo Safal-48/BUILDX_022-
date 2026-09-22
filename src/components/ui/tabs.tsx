@@ -59,3 +59,4 @@ export function Tabs({ items, activeTab, onChange, className }: TabsProps) {
     </div>
   );
 }
+

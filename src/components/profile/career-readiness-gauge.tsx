@@ -130,3 +130,4 @@ export function CareerReadinessGauge({ profile }: CareerReadinessGaugeProps) {
     </GlassCard>
   );
 }
+

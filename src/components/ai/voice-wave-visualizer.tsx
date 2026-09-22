@@ -76,3 +76,4 @@ export function VoiceWaveVisualizer({ state, language = "en" }: VoiceWaveVisuali
     </div>
   );
 }
+
