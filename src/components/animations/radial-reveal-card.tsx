@@ -136,7 +136,7 @@ export function RadialRevealCard({
         ref={scope}
         onPointerEnter={onEnter}
         onPointerLeave={onLeave}
-        className={`relative rounded-2xl border-2 ${theme.borderResting} bg-[#040b17]/90 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] overflow-hidden backdrop-blur-xl shadow-xl`}
+        className={`relative rounded-2xl border-2 ${theme.borderResting} bg-[#040b17]/90 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] overflow-hidden backdrop-blur-xl shadow-xl h-full`}
         style={style}
       >
         {/* ---------------- 1. RESTING FACE (Visible by default) ---------------- */}
@@ -151,22 +151,22 @@ export function RadialRevealCard({
 
         <div className="py-2">
           <div
-            className="font-black text-white tracking-tight"
-            style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
+            className="font-black text-white tracking-tight truncate"
+            style={{ fontSize: "clamp(1.25rem, 1.8vw, 1.65rem)" }}
           >
             {title}
           </div>
         </div>
 
-        <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit text-xs sm:text-[13px] leading-tight">
-          <span>{badge}</span>
+        <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#021d20]/90 border border-teal-500/40 font-mono text-[#2dd4bf] font-semibold w-fit max-w-full text-xs sm:text-[13px] leading-tight whitespace-nowrap overflow-hidden">
+          <span className="truncate">{badge}</span>
         </div>
 
         {/* ---------------- 2. REVEALED HOVER FACE (Clipped circle expanding from cursor entry point) ---------------- */}
         <div
           ref={overlayRef}
           aria-hidden
-          className={`absolute inset-0 p-5 sm:p-6 flex flex-col justify-between border-2 ${theme.borderHover} rounded-2xl pointer-events-none z-10 transition-shadow duration-300`}
+          className={`absolute inset-0 p-5 sm:p-6 flex flex-col justify-between border-2 ${theme.borderHover} rounded-2xl pointer-events-none z-10 transition-shadow duration-300 h-full`}
           style={{
             background: theme.glowBg,
             clipPath: "circle(0% at 50% 50%)",
@@ -186,17 +186,17 @@ export function RadialRevealCard({
 
           <div className="py-2">
             <div
-              className={`font-black tracking-tight ${theme.titleHover} transition-all duration-300`}
-              style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.75rem)" }}
+              className={`font-black tracking-tight truncate ${theme.titleHover} transition-all duration-300`}
+              style={{ fontSize: "clamp(1.25rem, 1.8vw, 1.65rem)" }}
             >
               {title}
             </div>
           </div>
 
           <div
-            className={`inline-flex items-center px-3.5 py-1.5 rounded-full border font-mono font-bold w-fit text-xs sm:text-[13px] leading-tight shadow-md ${theme.pillHover} transition-all duration-300`}
+            className={`inline-flex items-center px-3.5 py-1.5 rounded-full border font-mono font-bold w-fit max-w-full text-xs sm:text-[13px] leading-tight shadow-md whitespace-nowrap overflow-hidden ${theme.pillHover} transition-all duration-300`}
           >
-            <span>{badge}</span>
+            <span className="truncate">{badge}</span>
           </div>
         </div>
       </div>

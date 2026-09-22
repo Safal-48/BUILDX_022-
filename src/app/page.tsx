@@ -180,8 +180,8 @@ export default function HomePage() {
               <RadialRevealCard
                 href="/dashboard"
                 category="ACADEMIA × INDUSTRY"
-                title="Connected Ecosystem"
-                badge="Students • Institutions • Companies"
+                title="Connected Hub"
+                badge="Students • Campus • Industry"
                 accentColor="purple"
                 icon={<Network className="h-4 w-4 sm:h-4.5 sm:w-4.5" />}
                 style={{ minHeight: "clamp(175px, 22vh, 230px)" }}
