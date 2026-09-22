@@ -224,23 +224,23 @@ export function Navbar() {
           : "bg-slate-950/60 backdrop-blur-md border-b border-white/[0.05]"
       }`}
     >
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-        <div className="flex h-[84px] items-center justify-between gap-3 sm:gap-6 w-full">
+      <div className="w-full max-w-[1680px] mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="flex h-[80px] sm:h-[84px] items-center justify-between gap-2 sm:gap-4 w-full">
           {/* Logo & Brand */}
-          <div className="flex items-center gap-3 shrink-0 xl:min-w-[240px]">
-            <Link href="/" className="flex items-center gap-3 group">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
               <SkilloraLogo size="md" />
             </Link>
           </div>
 
-          {/* Desktop Navigation - Placed Centered In Between with High Contrast & Larger Typography */}
-          <nav className="hidden xl:flex items-center justify-center gap-2 2xl:gap-3 flex-1 mx-2 lg:mx-6">
+          {/* Desktop Navigation - Responsive Centered with High Contrast */}
+          <nav className="hidden xl:flex items-center justify-center gap-1 lg:gap-1.5 2xl:gap-2.5 flex-1 mx-1 lg:mx-3">
             {/* ---------------- 1. STUDENT PERSPECTIVE NAVIGATION ---------------- */}
             {isStudent && (
               <>
                 <Link
                   href="/dashboard"
-                  className={`px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname === "/dashboard"
                       ? "bg-cyan-500/25 text-white border border-cyan-400/70 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]"
@@ -251,13 +251,13 @@ export function Navbar() {
 
                 <Link
                   href="/assessment"
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname?.startsWith("/assessment")
                       ? "bg-cyan-500/25 text-white border border-cyan-400/70 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]"
                   }`}
                 >
-                  <Brain className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                  <Brain className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                   <span>ASSESS</span>
                 </Link>
 
@@ -266,16 +266,16 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => setOpenDropdown(openDropdown === "learning" ? null : "learning")}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                    className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                       openDropdown === "learning" || pathname?.startsWith("/learning")
                         ? "bg-cyan-500/25 text-white border border-cyan-400/70 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                         : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]"
                     }`}
                   >
-                    <BookOpen className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                    <BookOpen className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                     <span>MY LEARNING</span>
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
                         openDropdown === "learning" ? "rotate-180 text-cyan-300" : "text-slate-300"
                       }`}
                     />
@@ -323,25 +323,25 @@ export function Navbar() {
 
                 <Link
                   href="/scholarships"
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname?.startsWith("/scholarships")
                       ? "bg-amber-500/25 text-white border border-amber-400/70 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(245,158,11,0.25)]"
                   }`}
                 >
-                  <Award className="h-4.5 w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]" />
+                  <Award className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)] shrink-0" />
                   <span>SCHOLARSHIPS</span>
                 </Link>
 
                 <Link
                   href="/opportunities"
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname?.startsWith("/opportunities")
                       ? "bg-emerald-500/25 text-white border border-emerald-400/70 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                   }`}
                 >
-                  <Compass className="h-4.5 w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
+                  <Compass className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)] shrink-0" />
                   <span>CAREER &amp; OPPS</span>
                 </Link>
               </>
@@ -352,7 +352,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/teacher"
-                  className={`px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname === "/dashboard/teacher"
                       ? "bg-emerald-500/25 text-white border border-emerald-400/70 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
@@ -363,54 +363,54 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/teacher?tab=students"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
                 >
-                  <Users className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                  <Users className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                   <span>STUDENTS</span>
                 </Link>
 
                 <Link
                   href="/teacher/attendance"
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname?.startsWith("/teacher/attendance")
                       ? "bg-emerald-500/25 text-white border border-emerald-400/70 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
                   }`}
                 >
-                  <Calendar className="h-4.5 w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
+                  <Calendar className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)] shrink-0" />
                   <span>ATTENDANCE</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=at-risk"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
                 >
-                  <AlertTriangle className="h-4.5 w-4.5 text-rose-400 animate-pulse drop-shadow-[0_0_8px_rgba(244,63,94,0.7)]" />
-                  <span>AT-RISK STUDENTS</span>
-                  <span className="h-2 w-2 rounded-full bg-rose-500 animate-ping" />
+                  <AlertTriangle className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-rose-400 animate-pulse drop-shadow-[0_0_8px_rgba(244,63,94,0.7)] shrink-0" />
+                  <span>AT-RISK</span>
+                  <span className="h-2 w-2 rounded-full bg-rose-500 animate-ping shrink-0" />
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=insights"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-purple-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-purple-400/50 shadow-sm"
                 >
-                  <Brain className="h-4.5 w-4.5 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]" />
-                  <span>ACADEMIC INSIGHTS</span>
+                  <Brain className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] shrink-0" />
+                  <span>INSIGHTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=alerts"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm"
                 >
-                  <Bell className="h-4.5 w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]" />
+                  <Bell className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)] shrink-0" />
                   <span>ALERTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/teacher?tab=interventions"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
                 >
-                  <History className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                  <History className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                   <span>INTERVENTIONS</span>
                 </Link>
               </>
@@ -421,7 +421,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/parent"
-                  className={`px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname === "/dashboard/parent"
                       ? "bg-amber-500/25 text-white border border-amber-400/70 shadow-[0_0_20px_rgba(245,158,11,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm"
@@ -432,43 +432,43 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/parent?tab=child"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
                 >
-                  <UserCheck className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                  <UserCheck className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                   <span>CHILD OVERVIEW</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=attendance"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-amber-200 hover:text-white bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/40 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-amber-200 hover:text-white bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/40 shadow-sm"
                 >
-                  <Calendar className="h-4.5 w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]" />
+                  <Calendar className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)] shrink-0" />
                   <span>ATTENDANCE</span>
-                  <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/25 text-amber-200 border border-amber-400/30">74.2%</span>
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-200 border border-amber-400/30">74.2%</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=academics"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
                 >
-                  <TrendingUp className="h-4.5 w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
-                  <span>ACADEMIC PROGRESS</span>
+                  <TrendingUp className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)] shrink-0" />
+                  <span>PROGRESS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=alerts"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-rose-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-rose-400/50 shadow-sm"
                 >
-                  <Bell className="h-4.5 w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)]" />
+                  <Bell className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)] shrink-0" />
                   <span>ALERTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/parent?tab=updates"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-purple-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-purple-400/50 shadow-sm"
                 >
-                  <BookOpen className="h-4.5 w-4.5 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]" />
-                  <span>SCHOOL UPDATES</span>
+                  <BookOpen className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] shrink-0" />
+                  <span>UPDATES</span>
                 </Link>
               </>
             )}
@@ -478,7 +478,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard/institution"
-                  className={`px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                     pathname === "/dashboard/institution"
                       ? "bg-purple-500/25 text-white border border-purple-400/70 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
                       : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-purple-400/50 shadow-sm"
@@ -489,57 +489,57 @@ export function Navbar() {
 
                 <Link
                   href="/dashboard/institution?tab=students"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
                 >
-                  <Users className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
+                  <Users className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
                   <span>STUDENTS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=attendance"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
                 >
-                  <Calendar className="h-4.5 w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
-                  <span>ATTENDANCE ANALYTICS</span>
+                  <Calendar className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)] shrink-0" />
+                  <span>ATTENDANCE</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=scholarships"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-amber-400/50 shadow-sm"
                 >
-                  <Award className="h-4.5 w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]" />
-                  <span>SCHOLARSHIP AWARENESS</span>
+                  <Award className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)] shrink-0" />
+                  <span>SCHOLARSHIPS</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=dropout"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
                 >
-                  <AlertTriangle className="h-4.5 w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)]" />
-                  <span>DROPOUT ANALYTICS</span>
+                  <AlertTriangle className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)] shrink-0" />
+                  <span>DROPOUT</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=engagement"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-cyan-400/50 shadow-sm"
                 >
-                  <Zap className="h-4.5 w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)]" />
-                  <span>LEARNING ENGAGEMENT</span>
+                  <Zap className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.7)] shrink-0" />
+                  <span>ENGAGEMENT</span>
                 </Link>
 
                 <Link
                   href="/dashboard/institution?tab=opportunities"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-emerald-400/50 shadow-sm"
                 >
-                  <Compass className="h-4.5 w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
+                  <Compass className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.7)] shrink-0" />
                   <span>OPPORTUNITIES</span>
                 </Link>
 
                 <Link
                   href="/admin"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
+                  className="flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap text-rose-200 hover:text-white bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/40 shadow-sm"
                 >
-                  <ShieldCheck className="h-4.5 w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)]" />
+                  <ShieldCheck className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.7)] shrink-0" />
                   <span>ADMIN</span>
                 </Link>
               </>
@@ -550,16 +550,16 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === "tools" ? null : "tools")}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13.5px] lg:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
+                className={`flex items-center gap-1.5 lg:gap-2 px-2.5 py-1.5 lg:px-3 lg:py-2 2xl:px-4 2xl:py-2.5 rounded-xl text-xs lg:text-[13px] 2xl:text-[14px] font-sans font-bold tracking-tight transition-all whitespace-nowrap ${
                   openDropdown === "tools"
                     ? "bg-violet-500/25 text-white border border-violet-400/70 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
                     : "text-slate-100 hover:text-white bg-slate-900/60 hover:bg-white/[0.14] border border-white/[0.12] hover:border-violet-400/50 shadow-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.25)]"
                 }`}
               >
-                <Sparkles className="h-4.5 w-4.5 text-violet-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]" />
+                <Sparkles className="h-4 w-4 lg:h-4.5 lg:w-4.5 text-violet-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] shrink-0" />
                 <span>MORE TOOLS</span>
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
                     openDropdown === "tools" ? "rotate-180 text-violet-300" : "text-slate-300"
                   }`}
                 />
@@ -607,19 +607,19 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Right Action Bar */}
-          <div className="flex items-center justify-end gap-2.5 sm:gap-3 shrink-0 xl:min-w-[240px]">
+          {/* Right Action Bar - Tightened & Non-Overflowing */}
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2.5 shrink-0">
             {/* Quick Role Switcher (For rapid testing & demo review) */}
-            <div className="relative" onClick={(e) => e.stopPropagation()}>
+            <div className="relative shrink-0" onClick={(e) => e.stopPropagation()}>
               <button
                 type="button"
                 onClick={() => setOpenDropdown(openDropdown === "role_switcher" ? null : "role_switcher")}
-                className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-[13px] font-sans font-bold bg-slate-900/95 border border-cyan-400/50 hover:border-cyan-300 text-cyan-200 hover:text-white transition-all shadow-[0_0_15px_rgba(6,182,212,0.25)]"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-xs font-sans font-bold bg-slate-900/95 border border-cyan-400/50 hover:border-cyan-300 text-cyan-200 hover:text-white transition-all shadow-[0_0_12px_rgba(6,182,212,0.25)] shrink-0"
                 title="Switch role view for demonstration"
               >
-                <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee] animate-pulse" />
-                <span className="uppercase text-[12px] tracking-wider font-extrabold">{effectiveRole}</span>
-                <ChevronDown className={`h-3.5 w-3.5 text-cyan-300 transition-transform ${openDropdown === "role_switcher" ? "rotate-180" : ""}`} />
+                <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee] animate-pulse shrink-0" />
+                <span className="uppercase text-[11px] sm:text-xs tracking-wider font-extrabold">{effectiveRole}</span>
+                <ChevronDown className={`h-3 w-3 text-cyan-300 transition-transform ${openDropdown === "role_switcher" ? "rotate-180" : ""}`} />
               </button>
 
               {openDropdown === "role_switcher" && (
@@ -665,17 +665,17 @@ export function Navbar() {
             <button
               type="button"
               onClick={toggleLowData}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-[13px] font-sans font-bold transition-all border cursor-pointer ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-xs font-sans font-bold transition-all border cursor-pointer shrink-0 ${
                 isLowData
-                  ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/70 shadow-[0_0_15px_rgba(16,185,129,0.35)]"
+                  ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/70 shadow-[0_0_12px_rgba(16,185,129,0.35)]"
                   : "bg-slate-900/80 text-slate-100 hover:text-white border-white/15 hover:border-amber-400/50"
               }`}
               title="Toggle Low Data Mode: reduces animations, compresses assets, and saves cellular data"
             >
-              <Zap className={`h-4 w-4 ${isLowData ? "text-emerald-400 drop-shadow-[0_0_6px_#34d399]" : "text-amber-400 drop-shadow-[0_0_6px_#fbbf24]"}`} />
+              <Zap className={`h-3.5 w-3.5 ${isLowData ? "text-emerald-400 drop-shadow-[0_0_6px_#34d399]" : "text-amber-400 drop-shadow-[0_0_6px_#fbbf24]"} shrink-0`} />
               <span className="hidden 2xl:inline text-xs font-bold text-slate-200">Low Data</span>
               <span
-                className={`text-[10.5px] px-2 py-0.5 rounded-md font-extrabold tracking-wider ${
+                className={`text-[10px] px-1.5 py-0.5 rounded-md font-extrabold tracking-wider ${
                   isLowData ? "bg-emerald-500/40 text-emerald-100 border border-emerald-400/40" : "bg-white/15 text-slate-200"
                 }`}
               >
@@ -684,33 +684,33 @@ export function Navbar() {
             </button>
 
             {isAuthenticated ? (
-              <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <Link href="/profile">
-                  <Button variant="outline" size="sm" className="gap-2 border-white/15 hover:border-cyan-400/60 bg-slate-900/80 text-slate-100 hover:text-white px-3.5 py-2 h-10 rounded-xl">
-                    <RiUserFillIcon className="h-4 w-4 text-cyan-400" />
-                    <span className="hidden sm:inline font-sans text-[13.5px] font-bold">{user?.fullName || "Profile"}</span>
+                  <Button variant="outline" size="sm" className="gap-1.5 border-white/15 hover:border-cyan-400/60 bg-slate-900/80 text-slate-100 hover:text-white px-3 py-1.5 h-9 rounded-xl">
+                    <RiUserFillIcon className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                    <span className="hidden sm:inline font-sans text-xs font-bold">{user?.fullName || "Profile"}</span>
                   </Button>
                 </Link>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={logout}
-                  className="text-slate-300 hover:text-rose-400 hover:bg-rose-500/10 h-10 w-10 rounded-xl"
+                  className="text-slate-300 hover:text-rose-400 hover:bg-rose-500/10 h-9 w-9 rounded-xl shrink-0"
                   title="Log Out"
                 >
-                  <LogOut className="h-4.5 w-4.5" />
+                  <LogOut className="h-4 w-4" />
                 </Button>
               </div>
             ) : (
-              <div className="hidden sm:flex items-center gap-2.5">
+              <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="font-sans text-[13.5px] font-bold text-slate-100 hover:text-white hover:bg-white/10 h-10 px-3.5 rounded-xl transition-all">
+                  <Button variant="ghost" size="sm" className="font-sans text-xs sm:text-[13px] font-bold text-slate-100 hover:text-white hover:bg-white/10 h-9 px-3 rounded-xl transition-all">
                     Log In
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button variant="cyber" size="sm" className="font-sans text-[13.5px] font-extrabold gap-2 h-10 px-4.5 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] hover:scale-[1.03] transition-all">
-                    Start Learning <ArrowRight className="h-4 w-4" />
+                  <Button variant="cyber" size="sm" className="font-sans text-xs sm:text-[13px] font-extrabold gap-1.5 h-9 px-3.5 sm:px-4 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_24px_rgba(6,182,212,0.6)] hover:scale-[1.02] transition-all whitespace-nowrap">
+                    Start Learning <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
               </div>
@@ -719,7 +719,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="xl:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-900/60 border border-white/10"
+              className="xl:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-900/60 border border-white/10 shrink-0"
               aria-label="Toggle navigation menu"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

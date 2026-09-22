@@ -118,24 +118,24 @@ export default function RegisterPage() {
   return (
     <div className="relative min-h-[calc(100vh-4.5rem)] py-8 sm:py-12 flex items-center justify-center w-full max-w-full overflow-hidden">
       {/* Ambient background glow aura */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] max-w-full bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] max-w-full bg-gradient-to-tr from-cyan-500/20 via-violet-500/12 to-transparent rounded-full blur-[160px] pointer-events-none -z-10" />
 
-      <Container size="md" className="relative z-10 max-w-2xl px-4 sm:px-6">
+      <Container size="md" className="relative z-10 max-w-2xl px-4 sm:px-6 md:scale-[1.02] lg:scale-[1.05] xl:scale-[1.08] transition-transform duration-300 origin-center">
         <FadeIn>
           <div className="flex flex-col items-center text-center mb-8 space-y-2">
             <div className="flex items-center justify-center mb-1">
-              <SkilloraIcon size={52} className="shadow-cyan-500/30 shadow-xl" />
+              <SkilloraIcon size={64} className="shadow-cyan-500/35 shadow-2xl transition-transform hover:scale-105 duration-300" />
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="cyber" size="sm" className="font-mono text-[9px]">
+              <Badge variant="cyber" size="sm" className="font-mono text-[10px] px-2 py-0.5 font-bold">
                 AI Learning Ecosystem
               </Badge>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground font-mono">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-black tracking-tight text-foreground font-mono leading-tight">
               Join <span className="text-white">Skill</span>
               <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">ora</span>
             </h1>
-            <p className="text-xs sm:text-sm text-muted-foreground max-w-md font-mono">
+            <p className="text-xs sm:text-sm text-slate-300 max-w-md font-mono font-medium">
               Learn Smart • Improve Continuously • Own Your Future
             </p>
           </div>
@@ -143,12 +143,14 @@ export default function RegisterPage() {
 
         <SlideUp delay={0.1}>
           <GlassCard
-            className="p-6 sm:p-8 border-cyan-500/30 bg-slate-950/75 backdrop-blur-2xl shadow-[0_0_50px_rgba(6,182,212,0.12)] space-y-7 relative overflow-hidden"
+            className="p-7 sm:p-9 border-cyan-500/40 bg-slate-950/92 backdrop-blur-3xl shadow-[0_0_60px_rgba(6,182,212,0.18),0_25px_60px_rgba(0,0,0,0.85)] space-y-7 relative overflow-hidden rounded-2xl sm:rounded-3xl"
             glow
           >
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent pointer-events-none" />
+
             {serverError && (
-              <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono flex items-start gap-3">
-                <ShieldAlert className="h-4 w-4 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs sm:text-sm font-mono flex items-start gap-3">
+                <ShieldAlert className="h-5 w-5 shrink-0 mt-0.5" />
                 <span>{serverError}</span>
               </div>
             )}
