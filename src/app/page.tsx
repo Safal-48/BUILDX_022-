@@ -25,8 +25,10 @@ import {
   Lock,
   School,
   FileText,
-  Clock,
   Briefcase,
+  LayoutGrid,
+  Workflow,
+  Coins,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
@@ -65,6 +67,7 @@ export default function HomePage() {
   const { isLowData, toggleLowData, isOnline, estimatedDataSavedMb } = useLowData();
   const { login } = useAuth();
   const [selectedRoleTab, setSelectedRoleTab] = React.useState<"student" | "teacher" | "parent">("student");
+  const [activeEcosystemTab, setActiveEcosystemTab] = React.useState<"highlights" | "how_it_works" | "ecosystem" | "advantage">("highlights");
 
   // 1-Click quick persona login for evaluators/judges
   const handleQuickLogin = async (role: UserRole) => {
@@ -326,6 +329,270 @@ export default function HomePage() {
             {/* Right Column: Exact Skillora Ecosystem Architecture Topology Diagram */}
             <div className="lg:col-span-7">
               <SkilloraEcosystemVisualizer />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ---------------- THE INTELLIGENT ECOSYSTEM FOR SKILLS AND OPPORTUNITIES ---------------- */}
+      <section className="relative py-20 sm:py-28 overflow-hidden border-t border-white/[0.08] bg-slate-950/80 backdrop-blur-md">
+        {/* Ambient Glow matching site theme */}
+        <div className="absolute inset-0 -z-10 pointer-events-none select-none">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 rounded-full blur-[120px]" />
+        </div>
+
+        <Container size="xl">
+          <div className="max-w-4xl mx-auto text-center space-y-4 mb-12">
+            {/* Top Pill: BUILT FOR A BRIGHTER TOMORROW */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-xs font-mono shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+              <svg className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 20h10" />
+                <path d="M12 20v-8" />
+                <path d="M12 12c-2.5-3-5.5-3-7-1 0 4 3 6 7 5" />
+                <path d="M12 9c2.5-3 5.5-3 7-1 0 4-3 6-7 5" />
+              </svg>
+              <span>BUILT FOR A BRIGHTER TOMORROW</span>
+            </div>
+
+            {/* Headline */}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+              The Intelligent Ecosystem
+              <span className="block mt-2">
+                for <span className="text-emerald-400">Skills</span> and{" "}
+                <span className="bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-300 bg-clip-text text-transparent">
+                  Opportunities
+                </span>
+              </span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-lg text-slate-300/90 max-w-2xl mx-auto leading-relaxed font-sans">
+              A unified platform that helps students learn, get guidance, find scholarships and explore career opportunities — all in one place.
+            </p>
+
+            {/* 4 Interactive Switch Tabs */}
+            <div className="pt-3">
+              <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl">
+                <button
+                  type="button"
+                  onClick={() => setActiveEcosystemTab("highlights")}
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                    activeEcosystemTab === "highlights"
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <LayoutGrid className="h-4 w-4" />
+                  <span>Platform Highlights</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveEcosystemTab("how_it_works")}
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                    activeEcosystemTab === "how_it_works"
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Workflow className="h-4 w-4" />
+                  <span>How It Works</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveEcosystemTab("ecosystem")}
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                    activeEcosystemTab === "ecosystem"
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <Users className="h-4 w-4" />
+                  <span>Ecosystem</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveEcosystemTab("advantage")}
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                    activeEcosystemTab === "advantage"
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  <ShieldCheck className="h-4 w-4" />
+                  <span>Our Advantage</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Feature Cards (Platform Highlights) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
+            {/* Card 1: Study After 12th (Emerald) */}
+            <div className="rounded-3xl border border-emerald-500/30 bg-slate-900/60 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-emerald-400/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(16,185,129,0.2)] group">
+              <div>
+                <div className="h-14 w-14 rounded-full border-2 border-emerald-400/60 bg-emerald-500/10 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.35)] group-hover:scale-110 transition-transform mb-5">
+                  <GraduationCap className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Study After 12th
+                </h3>
+                <p className="text-xs font-semibold text-emerald-400 mt-1 mb-4">
+                  Find Your Next Step
+                </p>
+                <ul className="space-y-2 text-xs sm:text-sm text-slate-300 font-sans">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Degree courses</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Diploma &amp; Polytechnic</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>ITI &amp; Vocational courses</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Entrance exams &amp; admissions</span>
+                  </li>
+                </ul>
+              </div>
+              <Link href="/opportunities?category=higher_ed" className="mt-6 pt-4 border-t border-white/10 block">
+                <Button
+                  variant="glass"
+                  className="w-full py-5 rounded-2xl border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 group-hover:border-emerald-400/70"
+                >
+                  <span>Explore Courses</span>
+                  <ArrowRight className="h-4 w-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Card 2: Scholarships (Amber/Gold) */}
+            <div className="rounded-3xl border border-amber-500/30 bg-slate-900/60 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-amber-400/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,158,11,0.2)] group">
+              <div>
+                <div className="h-14 w-14 rounded-full border-2 border-amber-400/60 bg-amber-500/10 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.35)] group-hover:scale-110 transition-transform mb-5">
+                  <Coins className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                  Scholarships
+                </h3>
+                <p className="text-xs font-semibold text-amber-400 mt-1 mb-4">
+                  Get the Support You Deserve
+                </p>
+                <ul className="space-y-2 text-xs sm:text-sm text-slate-300 font-sans">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <span>Scholarship opportunities</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <span>Fee support &amp; loan options</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <span>Government schemes</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <span>Track application status</span>
+                  </li>
+                </ul>
+              </div>
+              <Link href="/scholarships" className="mt-6 pt-4 border-t border-white/10 block">
+                <Button
+                  variant="glass"
+                  className="w-full py-5 rounded-2xl border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 group-hover:border-amber-400/70"
+                >
+                  <span>Find Scholarships</span>
+                  <ArrowRight className="h-4 w-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Card 3: Career Pathways (Cyan/Sky) */}
+            <div className="rounded-3xl border border-cyan-500/30 bg-slate-900/60 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-cyan-400/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] group">
+              <div>
+                <div className="h-14 w-14 rounded-full border-2 border-cyan-400/60 bg-cyan-500/10 flex items-center justify-center text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.35)] group-hover:scale-110 transition-transform mb-5">
+                  <Compass className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Career Pathways
+                </h3>
+                <p className="text-xs font-semibold text-cyan-400 mt-1 mb-4">
+                  Plan Your Future
+                </p>
+                <ul className="space-y-2 text-xs sm:text-sm text-slate-300 font-sans">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Career guidance &amp; roadmap</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Skill development programs</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Industry &amp; local opportunities</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Higher education options</span>
+                  </li>
+                </ul>
+              </div>
+              <Link href="/opportunities" className="mt-6 pt-4 border-t border-white/10 block">
+                <Button
+                  variant="glass"
+                  className="w-full py-5 rounded-2xl border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 group-hover:border-cyan-400/70"
+                >
+                  <span>Explore Career Paths</span>
+                  <ArrowRight className="h-4 w-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Card 4: Opportunities Near You (Purple) */}
+            <div className="rounded-3xl border border-purple-500/30 bg-slate-900/60 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-purple-400/60 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] group">
+              <div>
+                <div className="h-14 w-14 rounded-full border-2 border-purple-400/60 bg-purple-500/10 flex items-center justify-center text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.35)] group-hover:scale-110 transition-transform mb-5">
+                  <Users className="h-7 w-7" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                  Opportunities Near You
+                </h3>
+                <p className="text-xs font-semibold text-purple-400 mt-1 mb-4">
+                  Learn • Grow • Build
+                </p>
+                <ul className="space-y-2 text-xs sm:text-sm text-slate-300 font-sans">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Nagpur</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>MIHAN</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Hingna</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Butibori</span>
+                  </li>
+                </ul>
+              </div>
+              <Link href="/opportunities?location=nagpur" className="mt-6 pt-4 border-t border-white/10 block">
+                <Button
+                  variant="glass"
+                  className="w-full py-5 rounded-2xl border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 group-hover:border-purple-400/70"
+                >
+                  <span>View Opportunities</span>
+                  <ArrowRight className="h-4 w-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
