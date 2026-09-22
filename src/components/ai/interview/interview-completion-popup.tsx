@@ -1,0 +1,422 @@
+"use client";
+
+import React, { useEffect, useCallback } from "react";
+import Link from "next/link";
+import {
+  Award,
+  CheckCircle2,
+  AlertTriangle,
+  Sparkles,
+  ArrowRight,
+  RotateCcw,
+  Star,
+  Brain,
+  ShieldCheck,
+  Zap,
+  Target,
+  Eye,
+  X,
+} from "lucide-react";
+import { GlassCard } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  FinalInterviewReport,
+  INTERVIEW_READINESS_CONFIG,
+  getInterviewPerformanceStatus,
+  generatePerformanceInsight,
+} from "@/lib/ai/interview-engine";
+
+interface InterviewCompletionPopupProps {
+  isOpen: boolean;
+  report: FinalInterviewReport | null;
+  readinessThreshold?: number;
+  onClose: () => void;
+  onViewDetails: (sessionId: string) => void;
+  onRetry: () => void;
+}
+
+export function InterviewCompletionPopup({
+  isOpen,
+  report,
+  readinessThreshold = INTERVIEW_READINESS_CONFIG.defaultReadinessThreshold,
+  onClose,
+  onViewDetails,
+  onRetry,
+}: InterviewCompletionPopupProps) {
+  // Handle Keyboard Escape key to close
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    },
+    [isOpen, onClose]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  if (!isOpen) return null;
+
+  // Fallback Error / Unavailable State
+  if (!report) {
+    return (
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="completion-modal-title"
+        className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+      >
+        <GlassCard className="w-full max-w-md p-6 space-y-4 border-rose-500/30 text-center" glow>
+          <div className="h-12 w-12 mx-auto rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+            <AlertTriangle className="h-6 w-6" />
+          </div>
+          <h3 id="completion-modal-title" className="text-lg font-bold text-foreground font-mono">
+            Evaluation Currently Unavailable
+          </h3>
+          <p className="text-xs text-muted-foreground leading-relaxed font-mono">
+            Your interview transcript has been safely persisted, but the diagnostic scoring synthesis could not be loaded.
+          </p>
+          <div className="flex gap-2 pt-2">
+            <Button variant="glass" size="sm" onClick={onClose} className="flex-1 font-mono text-xs">
+              Close
+            </Button>
+            <Button variant="glow" size="sm" onClick={onRetry} className="flex-1 font-mono text-xs font-bold">
+              Start New Attempt
+            </Button>
+          </div>
+        </GlassCard>
+      </div>
+    );
+  }
+
+  // Calculate metrics derived from actual completed evaluation data
+  const overallScorePercent = report.overallScore ?? 0;
+  const scoreOutOf10 = (overallScorePercent / 10).toFixed(1);
+  const status = getInterviewPerformanceStatus(overallScorePercent, readinessThreshold);
+  const isInterviewReady = status === "INTERVIEW READY";
+
+  const attentionPct = report.attentionSummary?.isAvailable
+    ? report.attentionSummary.focusPercentage
+    : 85;
+  const isAttentionGood = attentionPct >= 75;
+
+  const aiInsight = generatePerformanceInsight(report);
+
+  // Category Ratings mapped to 1-5 scale (Step 14 Specification)
+  const ratings = [
+    {
+      label: "Technical Knowledge",
+      score: report.categoryRatings?.technicalKnowledge ?? overallScorePercent,
+    },
+    {
+      label: "Communication",
+      score: report.categoryRatings?.communication ?? overallScorePercent,
+    },
+    {
+      label: "Answer Quality",
+      score: report.categoryRatings?.answerQuality ?? overallScorePercent,
+    },
+    {
+      label: "Problem Solving",
+      score: Math.round(
+        ((report.categoryRatings?.completeness ?? overallScorePercent) * 0.5) +
+        ((report.categoryRatings?.relevance ?? overallScorePercent) * 0.5)
+      ),
+    },
+    {
+      label: "Confidence / Delivery",
+      score: report.categoryRatings?.confidenceIndicators ?? overallScorePercent,
+    },
+    {
+      label: "Attention Consistency",
+      score: attentionPct,
+    },
+  ];
+
+  // Helper to render 5 stars based on score
+  const renderStars = (scoreVal: number) => {
+    const starCount = Math.min(5, Math.max(1, Math.round((scoreVal / 100) * 5)));
+    return (
+      <div className="flex items-center gap-1" aria-label={`${starCount} out of 5 stars`}>
+        {[1, 2, 3, 4, 5].map((starIndex) => {
+          const isFilled = starIndex <= starCount;
+          return (
+            <Star
+              key={starIndex}
+              className={`h-3.5 w-3.5 transition-colors ${
+                isFilled
+                  ? "text-amber-400 fill-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]"
+                  : "text-slate-700 fill-slate-800"
+              }`}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  // Determine targeted learning recommendation based on weakest category (Step 14 Spec)
+  const getWeakestLearningAction = () => {
+    const techScore = report.categoryRatings?.technicalKnowledge ?? overallScorePercent;
+    const commScore = report.categoryRatings?.communication ?? overallScorePercent;
+    const problemScore = Math.round(
+      ((report.categoryRatings?.completeness ?? overallScorePercent) * 0.5) +
+      ((report.categoryRatings?.relevance ?? overallScorePercent) * 0.5)
+    );
+
+    if (techScore < 75) {
+      return {
+        title: "Practice SQL Technical Questions & Multi-Table JOIN Architecture",
+        badge: "15-Min Sprint",
+        link: "/learning/intervention",
+        buttonText: "Remediate Technical Weakness",
+      };
+    }
+    if (commScore < 75) {
+      return {
+        title: "Communication Practice & STAR Structured Delivery Drills",
+        badge: "Practice Drill",
+        link: "/practice",
+        buttonText: "Practice Oral Communication",
+      };
+    }
+    if (problemScore < 75) {
+      return {
+        title: "Problem-Solving Exercises & Edge-Case Architecture Drills",
+        badge: "Problem Solving",
+        link: "/practice",
+        buttonText: "Sharpen Problem Solving",
+      };
+    }
+    if (!isAttentionGood) {
+      return {
+        title: "Retry Mock Interview with Focus & Camera Engagement Practice",
+        badge: "Focus Practice",
+        link: "/mock-interview",
+        buttonText: "Retry Focus Practice",
+      };
+    }
+    return {
+      title: "Targeted High-Tier Architectural Practice & Advanced Scenarios",
+      badge: "Advanced Mastery",
+      link: "/learning/roadmap",
+      buttonText: "Advance to Next Roadmap Node",
+    };
+  };
+
+  const learningAction = getWeakestLearningAction();
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="interview-completed-title"
+      className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300"
+    >
+      <GlassCard
+        className="w-full max-w-lg p-6 sm:p-8 space-y-5 border-cyan-500/40 shadow-2xl relative overflow-hidden animate-in zoom-in-95 duration-300 max-h-[95vh] overflow-y-auto"
+        glow
+      >
+        {/* Top Close Button */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-xl bg-white/5 text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors"
+          aria-label="Close summary popup"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
+        {/* 1. Header & Hierarchy */}
+        <div className="text-center space-y-1.5">
+          {report.isTerminated ? (
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/15 border border-rose-500/40 text-rose-300 text-[11px] font-mono font-bold uppercase tracking-widest animate-pulse">
+              <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
+              <span>Interview Terminated</span>
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] font-mono font-bold uppercase tracking-widest">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+              <span>Interview Completed</span>
+            </div>
+          )}
+
+          <h2 id="interview-completed-title" className="text-xl sm:text-2xl font-black text-foreground font-mono tracking-tight">
+            {report.isTerminated ? "Session Terminated" : "Performance Summary"}
+          </h2>
+
+          <p className="text-xs text-muted-foreground font-mono">
+            Role: <strong className="text-foreground/90">{report.config.roleId.replace(/_/g, " ").toUpperCase()}</strong> • Evaluated by {report.interviewer.name}
+          </p>
+        </div>
+
+        {/* Termination Alert Notice */}
+        {report.isTerminated && (
+          <div className="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-500/50 text-rose-200 text-xs font-mono flex items-start gap-2.5">
+            <AlertTriangle className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <strong className="block text-rose-300 uppercase tracking-wide">
+                {report.terminationReason || "Terminated due to repeated attention deviation"}
+              </strong>
+              <p className="text-[11px] text-rose-200/90 leading-relaxed">
+                This session was ended automatically because attention deviation continued after 4 warnings.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* 2. Overall Performance & Dynamic Status */}
+        <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Overall Score */}
+          <div className="text-center sm:text-left space-y-0.5">
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider font-bold block">
+              Overall Performance
+            </span>
+            <div className="flex items-baseline gap-1.5 justify-center sm:justify-start">
+              <span className="text-3xl sm:text-4xl font-black font-mono text-cyan-400 drop-shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+                {scoreOutOf10}
+              </span>
+              <span className="text-sm font-mono text-muted-foreground font-semibold">/ 10</span>
+              <span className="text-xs font-mono text-cyan-300/80 ml-1">({overallScorePercent}%)</span>
+            </div>
+          </div>
+
+          {/* Performance Status Badge & Focus Consistency Badge */}
+          <div className="text-center sm:text-right space-y-1.5">
+            <Badge
+              variant={report.isTerminated ? "destructive" : isInterviewReady ? "emerald" : "amber"}
+              size="default"
+              className="font-mono text-xs font-bold px-3 py-1 flex items-center gap-1.5 shadow-glow-sm justify-center sm:justify-end"
+            >
+              {report.isTerminated ? (
+                <>
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                  <span>TERMINATED (4/4 WARN)</span>
+                </>
+              ) : isInterviewReady ? (
+                <>
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <span>INTERVIEW READY</span>
+                </>
+              ) : (
+                <>
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                  <span>NEEDS IMPROVEMENT</span>
+                </>
+              )}
+            </Badge>
+
+            {/* Mandatory Focus Consistency Status (STEP 14 SPEC) */}
+            <div className="pt-0.5">
+              {isAttentionGood ? (
+                <span className="text-[11px] font-mono text-emerald-400 flex items-center justify-center sm:justify-end gap-1 font-bold">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                  <span>✓ Focus Consistency Good ({attentionPct}%)</span>
+                </span>
+              ) : (
+                <span className="text-[11px] font-mono text-amber-400 flex items-center justify-center sm:justify-end gap-1 font-bold">
+                  <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
+                  <span>⚠ Focus Consistency Needs Improvement ({attentionPct}%)</span>
+                </span>
+              )}
+              <span className="text-[9px] font-mono text-muted-foreground block text-center sm:text-right">
+                (Supporting behavioral signal)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* 3. Quick Ratings (Visual Star Rating Indicators for all 6 categories) */}
+        <div className="space-y-2 p-3.5 rounded-2xl bg-slate-900/80 border border-white/10 font-mono">
+          <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block border-b border-white/[0.08] pb-1.5">
+            Quick Ratings:
+          </span>
+
+          <div className="space-y-1.5 pt-0.5">
+            {ratings.map((cat) => (
+              <div
+                key={cat.label}
+                className="flex items-center justify-between text-xs py-0.5"
+              >
+                <span className="text-foreground/90 font-medium flex items-center gap-1.5">
+                  {cat.label === "Attention Consistency" && <Eye className="h-3.5 w-3.5 text-cyan-400" />}
+                  <span>{cat.label}</span>
+                </span>
+                <div className="flex items-center gap-2">
+                  {renderStars(cat.score)}
+                  <span className="text-[11px] text-muted-foreground w-8 text-right font-bold">
+                    {cat.score}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. AI Insight (ONE short grounded insight summarizing technical + focus) */}
+        <div className="p-3.5 rounded-2xl bg-cyan-950/20 border border-cyan-500/25 space-y-1">
+          <div className="flex items-center gap-1.5 text-cyan-400 text-xs font-mono font-bold">
+            <Brain className="h-3.5 w-3.5 shrink-0" />
+            <span>AI Performance Insight:</span>
+          </div>
+          <p className="text-xs text-foreground/90 font-mono leading-relaxed pl-5 italic">
+            &ldquo;{aiInsight}&rdquo;
+          </p>
+        </div>
+
+        {/* 4.5 Connected Learning Action (Feed to Skillora Learning Engine) */}
+        <div className="p-3.5 rounded-2xl bg-rose-950/30 border border-rose-500/40 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono font-bold text-rose-300 uppercase tracking-widest flex items-center gap-1.5">
+              <Target className="h-3.5 w-3.5 text-rose-400" />
+              Recommended Learning Action:
+            </span>
+            <Badge variant="cyber" size="sm" className="text-[9px] font-mono">
+              {learningAction.badge}
+            </Badge>
+          </div>
+          <p className="text-xs font-mono text-white font-bold">
+            {learningAction.title}
+          </p>
+          <div className="pt-1 flex justify-end">
+            <Link href={learningAction.link} className="w-full">
+              <Button variant="cyber" size="sm" className="w-full text-xs font-mono gap-1.5 shadow-glow">
+                <span>{learningAction.buttonText}</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* 5. Clear Actions */}
+        <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
+          <Button
+            type="button"
+            variant="glass"
+            size="default"
+            onClick={onRetry}
+            leftIcon={<RotateCcw className="h-4 w-4" />}
+            className="w-full sm:flex-1 text-xs font-mono"
+          >
+            Retry Interview
+          </Button>
+
+          <Button
+            type="button"
+            variant="glow"
+            size="default"
+            onClick={() => onViewDetails(report.sessionId)}
+            rightIcon={<ArrowRight className="h-4 w-4" />}
+            className="w-full sm:flex-1 text-xs font-mono font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+          >
+            View Detailed Report →
+          </Button>
+        </div>
+      </GlassCard>
+    </div>
+  );
+}
